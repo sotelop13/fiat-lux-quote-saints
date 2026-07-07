@@ -142,7 +142,7 @@ Dark/light/system theme is managed by `next-themes` (`useTheme()`). The `Setting
 
 The project root contains an `entities/` folder with three JSON schema stub files (`Saint`, `LiturgicalDay`, `UserFavorite`). These are base44 platform scaffolding artifacts — they define the entity schemas used when the project was generated. They are **not imported at runtime**; the actual data and CRUD logic live entirely in `src/api/`.
 
-### Content backlog (`Z-FUTURE_IMPROVMENTS.txt`)
+### Content backlog (`Z-FUTURE_IMPROVEMENTS.txt`)
 
 Tracked list of known gaps and planned features: July–December saints, missing liturgical entries, virtue/patron filter chips on Browse, a "no saint today" fallback, and upcoming-feasts section on the Today tab. Check this file before adding new features to avoid duplicating planned work.
 
@@ -173,16 +173,25 @@ Add entries to the `SUNDAY_READINGS` array in `src/api/readingsData.js`. Key mus
 ```bash
 UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
 
-# NO English (curl works)
+# NO English — curl usually works; fall back to Playwright if Cloudflare blocks it
 curl -s -A "$UA" "https://bible.usccb.org/bible/readings/MMDDYY.cfm"
 
-# NO Spanish — curl is Cloudflare-blocked on the /es/ subdomain; use Playwright instead:
+# NO Spanish — curl is always Cloudflare-blocked on /es/; use Playwright with a real context:
 node -e "
 const { chromium } = require('./node_modules/playwright');
 (async () => {
-  const b = await chromium.launch({ headless: true });
-  const p = await b.newPage();
-  await p.goto('https://bible.usccb.org/es/bible/lecturas/MMDDYY.cfm', { waitUntil: 'networkidle' });
+  const b = await chromium.launch({
+    headless: true,
+    args: ['--disable-blink-features=AutomationControlled', '--no-sandbox']
+  });
+  const ctx = await b.newContext({
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+    locale: 'es-MX',
+    extraHTTPHeaders: { 'Accept-Language': 'es-MX,es;q=0.9,en;q=0.5' }
+  });
+  const p = await ctx.newPage();
+  await p.goto('https://bible.usccb.org/es/bible/lecturas/MMDDYY.cfm', { waitUntil: 'load', timeout: 50000 });
+  await p.waitForTimeout(5000);
   console.log(await p.locator('body').innerText());
   await b.close();
 })();
@@ -216,4 +225,6 @@ VO has no Spanish edition on Divinum Officium. Spanish VO propers come from `rin
 }
 ```
 
-`ReadingsModal.jsx` renders a sticky header (title + rite tabs + horizontal section-jump chips) that stays pinned while the user scrolls through readings. A "Prayer before Mass" block (`t.prayer_before_mass`, EN/ES) appears first. Gospel readings get a gold left-border and `✝` marker; Psalm `R.` refrains are rendered in gold italic by a `PsalmText` component. The Today banner shows the Gospel `verse` / `verse_es` snippet beneath the title.
+`ReadingsModal.jsx` renders a sticky header (title + rite tabs + horizontal section-jump chips) that stays pinned while the user scrolls through readings. Content order: "Prayer before Mass" block → readings → source attribution link → "Prayer after Mass" block (Saint Bonaventure, EN/ES). The sticky header chips include "Prayer / Oración" (scrolls to before-mass prayer), one chip per reading section, and "After Mass / Pos-Misa" (scrolls to after-mass prayer). Gospel readings get a gold left-border and `✝` marker; Psalm `R.` refrains are rendered in gold italic by a `PsalmText` component. The Today banner shows the Gospel `verse` / `verse_es` snippet beneath the title.
+
+**Calendar readings cards** — `Calendar.jsx` imports `SUNDAY_READINGS` directly (not through the entity layer) and memoizes a `readingsDates` Set for O(1) grid-cell lookups. In the calendar grid, Sundays with readings show a `BookOpen` icon alongside the feast dot; tapping the cell scrolls the page to that day's card in the feast list via `dayListRefs`. In the feast list, the readings card always renders **first** for its day (before saint cards), uses `bg-gold/5 border-gold/30` styling to distinguish it from feast cards, and shows the full date column (month + day) in gold. When the readings card is the only representation for a day (no saint), the compact "date · feast name" label row is suppressed.
