@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getDaysInMonth, startOfMonth, getDay, format } from 'date-fns';
 import { ChevronLeft, ChevronRight, Loader2, Heart, Share2, Star, BookOpen } from 'lucide-react';
 import { getSaintsForYear, getLiturgicalForYear, UserFavorite } from '@/api/entities';
-import { getReadingsForDate } from '@/api/readingsData';
+import { SUNDAY_READINGS } from '@/api/readingsData';
 import SaintDetailModal from '@/components/SaintDetailModal';
 import ReadingsModal from '@/components/ReadingsModal';
 import { Button } from '@/components/ui/button';
@@ -211,6 +211,11 @@ export default function Calendar() {
     return result;
   }, [saints, year]);
 
+  const readingsDates = useMemo(
+    () => new Set(SUNDAY_READINGS.map(r => r.date)),
+    []
+  );
+
   const daysInMonth = getDaysInMonth(new Date(year, month));
   const firstDayOfWeek = getDay(startOfMonth(new Date(year, month)));
 
@@ -398,6 +403,8 @@ export default function Calendar() {
             const isPast = isCurrentMonthAndYear && day < today.getDate();
             const isPatronFeast = patronFeastMMDD === key;
             const dotColor = hasFeast ? liturgicalColorDotClass(info.color) : null;
+            const isoDate = `${year}-${mm}-${dd}`;
+            const hasReadings = readingsDates.has(isoDate);
 
             return (
               <button
@@ -418,8 +425,11 @@ export default function Calendar() {
                 `}>
                   {day}
                 </span>
-                {/* Always render dot space for consistent height */}
-                <span className={`w-1.5 h-1.5 rounded-full mt-0.5 ${hasFeast ? dotColor : 'invisible'}`} />
+                {/* Dot row — always rendered for consistent cell height */}
+                <div className="flex items-center gap-0.5 mt-0.5 h-2">
+                  <span className={`w-1.5 h-1.5 rounded-full ${hasFeast ? dotColor : 'invisible'}`} />
+                  <BookOpen className={`w-2 h-2 text-gold ${hasReadings ? '' : 'invisible'}`} />
+                </div>
               </button>
             );
           })}
@@ -450,7 +460,7 @@ export default function Calendar() {
               const { day, key, entries } = item;
               const isPastDay = isCurrentMonthAndYear && day < today.getDate();
               const isoDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-              const dayReadings = getReadingsForDate(isoDate);
+              const dayReadings = SUNDAY_READINGS.find(r => r.date === isoDate) ?? null;
               return (
               <div key={key} className={`flex flex-col gap-1.5 ${isPastDay ? 'opacity-50' : ''}`}>
                 {entries.map(({ info, saint, liturgical, isPrimary }, idx) => {
@@ -563,16 +573,12 @@ export default function Calendar() {
                 {dayReadings && (() => {
                   const rd = rite === 'VO' ? dayReadings.vo : dayReadings.no;
                   const title = (lang === 'es' && rd.title_es) ? rd.title_es : rd.title;
-                  const isDayToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
                   return (
                     <button
                       onClick={() => { setReadingsEntry(dayReadings); setReadingsOpen(true); }}
-                      className={`flex items-start gap-3 text-left bg-card rounded-xl border border-l-[3px] border-gold/40 border-l-gold px-4 py-3 transition-colors w-full hover:bg-secondary cursor-pointer ${isDayToday ? 'border-gold/30' : 'border-border'}`}
+                      className="flex items-start gap-3 text-left bg-card rounded-xl border border-border border-l-[3px] border-l-gold px-4 py-3 transition-colors w-full hover:bg-secondary cursor-pointer"
                     >
-                      <div className="flex flex-col items-center shrink-0 w-9 pt-0.5">
-                        <span className="font-inter text-xs text-muted-foreground leading-none">{MONTH_NAMES[month].slice(0, 3)}</span>
-                        <span className={`font-playfair text-lg font-bold leading-tight ${isDayToday ? 'text-gold' : 'text-foreground'}`}>{day}</span>
-                      </div>
+                      <div className="shrink-0 w-9" />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5 mb-0.5">
                           <BookOpen className="w-3 h-3 text-gold shrink-0" />
