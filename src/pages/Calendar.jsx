@@ -219,7 +219,8 @@ export default function Calendar() {
   const daysInMonth = getDaysInMonth(new Date(year, month));
   const firstDayOfWeek = getDay(startOfMonth(new Date(year, month)));
 
-  const touchStart = useRef(null);
+  const touchStart    = useRef(null);
+  const dayListRefs   = useRef({});
 
   const prevMonth = () => {
     if (month === 0) { setMonth(11); setYear(y => y - 1); }
@@ -257,10 +258,16 @@ export default function Calendar() {
     const dd = String(day).padStart(2, '0');
     const key = `${mm}-${dd}`;
     const saint = saintsByDate[key];
-    if (!saint) return;
-    setSelectedSaint(saint);
-    setSelectedLiturgical(liturgicalByDate[key] ?? null);
-    setModalOpen(true);
+    if (saint) {
+      setSelectedSaint(saint);
+      setSelectedLiturgical(liturgicalByDate[key] ?? null);
+      setModalOpen(true);
+      return;
+    }
+    const isoDate = `${year}-${mm}-${dd}`;
+    if (readingsDates.has(isoDate)) {
+      dayListRefs.current[key]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   const openEntryModal = (saint, liturgical) => {
@@ -411,7 +418,7 @@ export default function Calendar() {
                 key={day}
                 onClick={() => handleDayClick(day)}
                 className={`relative flex flex-col items-center py-1.5 rounded-lg transition-colors ${
-                  hasSaint ? 'cursor-pointer hover:bg-secondary' : 'cursor-default'
+                  hasSaint || hasReadings ? 'cursor-pointer hover:bg-secondary' : 'cursor-default'
                 } ${isPast ? 'opacity-40' : ''}`}
               >
                 {isPatronFeast && (
@@ -462,14 +469,16 @@ export default function Calendar() {
               const isoDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
               const dayReadings = SUNDAY_READINGS.find(r => r.date === isoDate) ?? null;
               return (
-              <div key={key} className={`flex flex-col gap-1.5 ${isPastDay ? 'opacity-50' : ''}`}>
+              <div key={key} ref={el => { dayListRefs.current[key] = el; }} className={`flex flex-col gap-1.5 ${isPastDay ? 'opacity-50' : ''}`}>
                 {entries.map(({ info, saint, liturgical, isPrimary }, idx) => {
                   const isSaved = saint && savedNames.has(saint.name);
                   const isDayToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
                   const isPatronFeast = patronFeastMMDD === key;
 
                   // Primary entry with no saint — compact label row, no card chrome
+                  // Skip if a readings card will serve as the primary card for this day
                   if (isPrimary && !saint) {
+                    if (dayReadings) return null;
                     return (
                       <div key={`${key}-${idx}`} className="flex items-center gap-3 px-1 py-1.5">
                         <div className="flex flex-col items-center shrink-0 w-9">
@@ -573,12 +582,17 @@ export default function Calendar() {
                 {dayReadings && (() => {
                   const rd = rite === 'VO' ? dayReadings.vo : dayReadings.no;
                   const title = (lang === 'es' && rd.title_es) ? rd.title_es : rd.title;
+                  const isDayToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
                   return (
                     <button
                       onClick={() => { setReadingsEntry(dayReadings); setReadingsOpen(true); }}
-                      className="flex items-start gap-3 text-left bg-card rounded-xl border border-border border-l-[3px] border-l-gold px-4 py-3 transition-colors w-full hover:bg-secondary cursor-pointer"
+                      className="flex items-start gap-3 text-left bg-gold/5 rounded-xl border border-gold/30 px-4 py-3 transition-colors w-full hover:bg-gold/10 cursor-pointer"
                     >
-                      <div className="shrink-0 w-9" />
+                      <div className="flex flex-col items-center shrink-0 w-9 pt-0.5">
+                        <span className="font-inter text-xs text-gold/60 leading-none">{MONTH_NAMES[month].slice(0, 3)}</span>
+                        <span className={`font-playfair text-lg font-bold leading-tight ${isDayToday ? 'text-gold' : 'text-foreground'}`}>{day}</span>
+                        {isDayToday && <span className="font-inter text-[9px] text-gold font-semibold uppercase leading-none mt-0.5">Today</span>}
+                      </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5 mb-0.5">
                           <BookOpen className="w-3 h-3 text-gold shrink-0" />
