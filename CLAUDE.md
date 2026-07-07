@@ -11,12 +11,24 @@ npm run lint         # ESLint (quiet)
 npm run lint:fix     # ESLint with auto-fix
 npm run typecheck    # tsc check (no emit) — runs against jsconfig.json, not tsconfig
 npm run preview      # preview the production build
-npm run build && vercel --prod  # deploy to Vercel production
 ```
 
 There are no tests.
 
 ESLint ignores `**/*.ts`/`**/*.tsx` — `src/utils/index.ts` is only checked by `npm run typecheck`, so run both before considering a change clean.
+
+## Deployment
+
+GitHub repo: `sotelop13/fiat-lux-quote-saints` (public, required for Claude Design connection)
+Live URL: `https://fiat-lux-quote-saints.vercel.app`
+
+Vercel is connected to GitHub — **do not run `vercel --prod` manually**. Just push to `main` and Vercel deploys automatically within ~1 minute.
+
+```bash
+git add <files>
+git commit -m "describe change"
+git push          # triggers Vercel deploy automatically
+```
 
 ## Architecture
 
