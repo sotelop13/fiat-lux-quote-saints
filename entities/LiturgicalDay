@@ -1,0 +1,45 @@
+{
+  "name": "LiturgicalDay",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "description": "Date in MM-DD format"
+    },
+    "novus_ordo_season": {
+      "type": "string",
+      "description": "Liturgical season in Ordinary Form"
+    },
+    "novus_ordo_feast": {
+      "type": "string"
+    },
+    "novus_ordo_rank": {
+      "type": "string",
+      "description": "e.g. Solemnity, Feast, Memorial, Optional Memorial, Feria"
+    },
+    "novus_ordo_color": {
+      "type": "string",
+      "description": "Liturgical color: green, purple, white, red, rose"
+    },
+    "vetus_ordo_season": {
+      "type": "string"
+    },
+    "vetus_ordo_feast": {
+      "type": "string"
+    },
+    "vetus_ordo_rank": {
+      "type": "string",
+      "description": "e.g. Double of I Class, Double, Semidouble, Simple, Feria"
+    },
+    "vetus_ordo_color": {
+      "type": "string"
+    },
+    "readings_reference": {
+      "type": "string",
+      "description": "e.g. Is 40:1-11, Ps 96, Jn 1:1-18"
+    }
+  },
+  "required": [
+    "date"
+  ]
+}

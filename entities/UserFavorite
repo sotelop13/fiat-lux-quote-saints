@@ -1,0 +1,22 @@
+{
+  "name": "UserFavorite",
+  "type": "object",
+  "properties": {
+    "saint_name": {
+      "type": "string"
+    },
+    "quote": {
+      "type": "string"
+    },
+    "feast_date": {
+      "type": "string"
+    },
+    "saved_date": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "saint_name",
+    "quote"
+  ]
+}

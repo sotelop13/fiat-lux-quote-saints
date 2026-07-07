@@ -1,0 +1,29 @@
+● Glad it came out well! The combination of the spring physics and the live finger-tracking
+  makes it feel genuinely tactile.
+
+  A few things still on the table if you want to keep going:
+
+  - More saints — plenty of feast days still showing "Feria" with no biography
+  - Deploy as PWA — once hosted (Vercel/Netlify), you can install it to your home screen and it behaves like a native app
+  - Rose liturgical color — Gaudete and Laetare Sundays use rose vestments, currently not in the color legend
+  - Today tab when no saint — the Feria state could show a daily Scripture verse or a general Marian prayer instead of a blank
+  - July–December saints (about 32 more entries planned for saintsData.js)
+  - Liturgical entries for all the new dates added so far (liturgicalData.js)
+  - Eventually, deploying as a PWA to Vercel or Netlify
+  -   Content (biggest impact)
+  1. July–December saints — the calendar is still sparse for the second half of the year; this is the most meaningful gap
+  2. Liturgical entries for all new dates — so the Calendar tab shows proper colors and ranks for every saint we've added
+
+  Features
+  3. Filter chips on Browse — tap a virtue (Humility, Courage…) or a patron category to filter the list; pairs naturally
+  with the sort we just added
+  4. "No saint today" fallback — right now if there's no saint for today it just shows a cross and "Feria." Could show a
+  random saint or a scripture verse instead
+  5. Saint of the week / upcoming feasts — a small section on the Today tab showing the next 2–3 feasts coming up
+
+  Polish
+  6. Onboarding — a simple welcome screen for first-time users explaining what the app is
+
+
+  Let me know what you'd like to do next.
+

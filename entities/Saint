@@ -1,0 +1,72 @@
+{
+  "name": "Saint",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the saint"
+    },
+    "feast_date": {
+      "type": "string",
+      "description": "Feast day in MM-DD format"
+    },
+    "birth_year": {
+      "type": "string"
+    },
+    "death_year": {
+      "type": "string"
+    },
+    "biography": {
+      "type": "string",
+      "description": "Short biography 2-3 paragraphs"
+    },
+    "quote": {
+      "type": "string",
+      "description": "Primary featured quote"
+    },
+    "prayer": {
+      "type": "string",
+      "description": "Saint-specific prayer or Morning Offering"
+    },
+    "reflection": {
+      "type": "string",
+      "description": "Short meditation prompt"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "patron_of": {
+      "type": "string"
+    },
+    "canonization_year": {
+      "type": "string"
+    },
+    "virtue": {
+      "type": "string",
+      "description": "Primary virtue associated with this saint"
+    }
+  },
+  "required": [
+    "name",
+    "feast_date",
+    "quote"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
