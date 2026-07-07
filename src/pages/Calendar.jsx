@@ -1,9 +1,11 @@
 import { useState, useMemo, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getDaysInMonth, startOfMonth, getDay, format } from 'date-fns';
-import { ChevronLeft, ChevronRight, Loader2, Heart, Share2, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Loader2, Heart, Share2, Star, BookOpen } from 'lucide-react';
 import { getSaintsForYear, getLiturgicalForYear, UserFavorite } from '@/api/entities';
+import { getReadingsForDate } from '@/api/readingsData';
 import SaintDetailModal from '@/components/SaintDetailModal';
+import ReadingsModal from '@/components/ReadingsModal';
 import { Button } from '@/components/ui/button';
 import { useRite } from '@/hooks/use-rite';
 import { usePatronSaint } from '@/hooks/use-patron-saint';
@@ -77,6 +79,8 @@ export default function Calendar() {
   const [selectedSaint, setSelectedSaint] = useState(null);
   const [selectedLiturgical, setSelectedLiturgical] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [readingsEntry, setReadingsEntry] = useState(null);
+  const [readingsOpen, setReadingsOpen] = useState(false);
   const [rite, setRite] = useRite();
   const [,, patronFeastMMDD] = usePatronSaint();
   const { toast } = useToast();
@@ -445,6 +449,8 @@ export default function Calendar() {
               }
               const { day, key, entries } = item;
               const isPastDay = isCurrentMonthAndYear && day < today.getDate();
+              const isoDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+              const dayReadings = getReadingsForDate(isoDate);
               return (
               <div key={key} className={`flex flex-col gap-1.5 ${isPastDay ? 'opacity-50' : ''}`}>
                 {entries.map(({ info, saint, liturgical, isPrimary }, idx) => {
@@ -554,6 +560,35 @@ export default function Calendar() {
                     </button>
                   );
                 })}
+                {dayReadings && (() => {
+                  const rd = rite === 'VO' ? dayReadings.vo : dayReadings.no;
+                  const title = (lang === 'es' && rd.title_es) ? rd.title_es : rd.title;
+                  const isDayToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+                  return (
+                    <button
+                      onClick={() => { setReadingsEntry(dayReadings); setReadingsOpen(true); }}
+                      className={`flex items-start gap-3 text-left bg-card rounded-xl border border-l-[3px] border-gold/40 border-l-gold px-4 py-3 transition-colors w-full hover:bg-secondary cursor-pointer ${isDayToday ? 'border-gold/30' : 'border-border'}`}
+                    >
+                      <div className="flex flex-col items-center shrink-0 w-9 pt-0.5">
+                        <span className="font-inter text-xs text-muted-foreground leading-none">{MONTH_NAMES[month].slice(0, 3)}</span>
+                        <span className={`font-playfair text-lg font-bold leading-tight ${isDayToday ? 'text-gold' : 'text-foreground'}`}>{day}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5 mb-0.5">
+                          <BookOpen className="w-3 h-3 text-gold shrink-0" />
+                          <span className="font-inter text-xs font-semibold text-gold">
+                            {lang === 'es' ? 'Lecturas de la Misa' : 'Mass Readings'}
+                          </span>
+                        </div>
+                        <p className="font-inter text-sm font-semibold text-foreground">{title}</p>
+                        <p className="font-inter text-xs text-muted-foreground mt-0.5">
+                          {lang === 'es' ? 'Toca para leer' : 'Tap to read'}
+                        </p>
+                      </div>
+                      <BookOpen className="w-4 h-4 text-gold self-center shrink-0" />
+                    </button>
+                  );
+                })()}
               </div>
               );
             })}
@@ -583,6 +618,13 @@ export default function Calendar() {
         liturgical={selectedLiturgical}
         open={modalOpen}
         onClose={() => setModalOpen(false)}
+        lang={lang}
+      />
+      <ReadingsModal
+        entry={readingsEntry}
+        open={readingsOpen}
+        onClose={() => setReadingsOpen(false)}
+        rite={rite}
         lang={lang}
       />
     </div>
