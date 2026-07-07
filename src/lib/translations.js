@@ -29,6 +29,7 @@ export const T = {
     lectionary:          'Lectionary',
     readings_source:     'Full text at',
     prayer_before_mass:  'Prayer before Mass',
+    prayer_after_mass:   'Prayer after Mass',
     vo_no_spanish:       'Spanish text not available for the Extraordinary Form — showing English.',
 
     // SaintDetailModal
@@ -219,6 +220,7 @@ export const T = {
     lectionary:          'Leccionario',
     readings_source:     'Texto completo en',
     prayer_before_mass:  'Oración antes de la Misa',
+    prayer_after_mass:   'Oración después de la Misa',
     vo_no_spanish:       'Texto en español no disponible para la Forma Extraordinaria — mostrando inglés.',
 
     // SaintDetailModal

@@ -37,10 +37,11 @@ export default function ReadingsModal({ entry, rite: riteProp, open, onClose, la
   const lang = langProp ?? ctxLang;
   const t = T[lang];
 
-  const containerRef  = useRef(null);
-  const stickyRef     = useRef(null);
-  const prayerRef     = useRef(null);
-  const readingRefs   = useRef([]);
+  const containerRef     = useRef(null);
+  const stickyRef        = useRef(null);
+  const prayerRef        = useRef(null);
+  const prayerAfterRef   = useRef(null);
+  const readingRefs      = useRef([]);
 
   // Local rite so the user can peek at the other form without leaving the modal;
   // re-aligns with the app-wide rite each time the sheet opens.
@@ -171,6 +172,12 @@ export default function ReadingsModal({ entry, rite: riteProp, open, onClose, la
                     </button>
                   );
                 })}
+                <button
+                  onClick={() => scrollTo(prayerAfterRef.current)}
+                  className="shrink-0 px-3 py-1 rounded-full text-[11px] font-inter font-medium border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
+                >
+                  {lang === 'es' ? 'Pos-Misa' : 'After Mass'}
+                </button>
               </div>
               {/* chips bottom padding */}
               <div className="h-2" />
@@ -254,6 +261,25 @@ export default function ReadingsModal({ entry, rite: riteProp, open, onClose, la
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 )}
+
+                {/* Prayer after Mass — Saint Bonaventure */}
+                <div ref={prayerAfterRef} className="border border-border/60 rounded-2xl px-5 py-4 bg-muted/30">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-5 h-px bg-gold" />
+                    <p className="font-inter text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                      {t.prayer_after_mass}
+                    </p>
+                  </div>
+                  <p className="font-inter text-[11px] text-muted-foreground/60 italic mb-2">
+                    {lang === 'es' ? 'San Buenaventura' : 'Saint Bonaventure'}
+                  </p>
+                  <p className="font-inter text-[14px] text-foreground/80 leading-relaxed italic">
+                    {lang === 'es'
+                      ? 'Oh dulcísimo Señor Jesucristo, te imploro que traspasen las mismas entrañas de mi alma con el dardo de tu amor, con una caridad verdadera, tranquila, santa y apostólica, de modo que toda mi alma siempre languidezca y desfallezca por amor a Ti y anhele ser desatada y estar contigo. Concede que mi alma tenga hambre de Ti, pan de los ángeles, refrigerio de las almas santas, nuestro pan diario y supersustancial, que tiene toda dulzura y sabor y todo gusto delicioso. Que mi corazón siempre tenga hambre y se alimente de Ti, a quien los ángeles desean contemplar, y que lo más íntimo de mi alma se llene de la dulzura de tu sabor. Que siempre tenga sed de Ti, fuente de vida, fuente de sabiduría y conocimiento, fuente de luz eterna, torrente de deleite, riqueza de la casa de Dios. Que siempre te rodee, te busque, te encuentre, corra hacia Ti, me acerque a Ti, medite en Ti, hable de Ti, y haga todas las cosas para alabanza y gloria de tu nombre, con humildad y discreción, con amor y gozo, con facilidad y afecto, y con perseverancia hasta el fin. Amén.'
+                      : 'O sweetest Lord Jesus Christ, I implore Thee, pierce the very marrow of my soul with the dart of Thy love, with true, tranquil, holy, apostolic charity, so that my whole soul may always languish and faint for love of Thee and long to be dissolved and to be with Thee. Grant that my soul may hunger after Thee, the bread of angels, the refreshment of holy souls, our daily and supersubstantial bread, having all sweetness and savor and every delightful taste. Let my heart always hunger after and feed upon Thee, Whom the angels desire to look upon, and may my innermost soul be filled with the sweetness of Thy savor. May I always thirst after Thee, the fountain of life, the fountain of wisdom and knowledge, the fountain of eternal light, the torrent of pleasure, the richness of the house of God. May I ever compass Thee, seek Thee, find Thee, run to Thee, come up to Thee, meditate on Thee, speak of Thee, and do all things to the praise and glory of Thy name, with humility and discretion, with love and delight, with ease and affection, and with perseverance unto the end. Amen.'
+                    }
+                  </p>
+                </div>
               </motion.div>
             </AnimatePresence>
 
