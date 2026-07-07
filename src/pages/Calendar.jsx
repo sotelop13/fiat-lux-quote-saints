@@ -470,6 +470,36 @@ export default function Calendar() {
               const dayReadings = SUNDAY_READINGS.find(r => r.date === isoDate) ?? null;
               return (
               <div key={key} ref={el => { dayListRefs.current[key] = el; }} className={`flex flex-col gap-1.5 ${isPastDay ? 'opacity-50' : ''}`}>
+                {dayReadings && (() => {
+                  const rd = rite === 'VO' ? dayReadings.vo : dayReadings.no;
+                  const title = (lang === 'es' && rd.title_es) ? rd.title_es : rd.title;
+                  const isDayToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+                  return (
+                    <button
+                      onClick={() => { setReadingsEntry(dayReadings); setReadingsOpen(true); }}
+                      className="flex items-start gap-3 text-left bg-gold/5 rounded-xl border border-gold/30 px-4 py-3 transition-colors w-full hover:bg-gold/10 cursor-pointer"
+                    >
+                      <div className="flex flex-col items-center shrink-0 w-9 pt-0.5">
+                        <span className="font-inter text-xs text-gold/60 leading-none">{MONTH_NAMES[month].slice(0, 3)}</span>
+                        <span className={`font-playfair text-lg font-bold leading-tight ${isDayToday ? 'text-gold' : 'text-foreground'}`}>{day}</span>
+                        {isDayToday && <span className="font-inter text-[9px] text-gold font-semibold uppercase leading-none mt-0.5">Today</span>}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5 mb-0.5">
+                          <BookOpen className="w-3 h-3 text-gold shrink-0" />
+                          <span className="font-inter text-xs font-semibold text-gold">
+                            {lang === 'es' ? 'Lecturas de la Misa' : 'Mass Readings'}
+                          </span>
+                        </div>
+                        <p className="font-inter text-sm font-semibold text-foreground">{title}</p>
+                        <p className="font-inter text-xs text-muted-foreground mt-0.5">
+                          {lang === 'es' ? 'Toca para leer' : 'Tap to read'}
+                        </p>
+                      </div>
+                      <BookOpen className="w-4 h-4 text-gold self-center shrink-0" />
+                    </button>
+                  );
+                })()}
                 {entries.map(({ info, saint, liturgical, isPrimary }, idx) => {
                   const isSaved = saint && savedNames.has(saint.name);
                   const isDayToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
@@ -579,36 +609,6 @@ export default function Calendar() {
                     </button>
                   );
                 })}
-                {dayReadings && (() => {
-                  const rd = rite === 'VO' ? dayReadings.vo : dayReadings.no;
-                  const title = (lang === 'es' && rd.title_es) ? rd.title_es : rd.title;
-                  const isDayToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
-                  return (
-                    <button
-                      onClick={() => { setReadingsEntry(dayReadings); setReadingsOpen(true); }}
-                      className="flex items-start gap-3 text-left bg-gold/5 rounded-xl border border-gold/30 px-4 py-3 transition-colors w-full hover:bg-gold/10 cursor-pointer"
-                    >
-                      <div className="flex flex-col items-center shrink-0 w-9 pt-0.5">
-                        <span className="font-inter text-xs text-gold/60 leading-none">{MONTH_NAMES[month].slice(0, 3)}</span>
-                        <span className={`font-playfair text-lg font-bold leading-tight ${isDayToday ? 'text-gold' : 'text-foreground'}`}>{day}</span>
-                        {isDayToday && <span className="font-inter text-[9px] text-gold font-semibold uppercase leading-none mt-0.5">Today</span>}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-1.5 mb-0.5">
-                          <BookOpen className="w-3 h-3 text-gold shrink-0" />
-                          <span className="font-inter text-xs font-semibold text-gold">
-                            {lang === 'es' ? 'Lecturas de la Misa' : 'Mass Readings'}
-                          </span>
-                        </div>
-                        <p className="font-inter text-sm font-semibold text-foreground">{title}</p>
-                        <p className="font-inter text-xs text-muted-foreground mt-0.5">
-                          {lang === 'es' ? 'Toca para leer' : 'Tap to read'}
-                        </p>
-                      </div>
-                      <BookOpen className="w-4 h-4 text-gold self-center shrink-0" />
-                    </button>
-                  );
-                })()}
               </div>
               );
             })}
