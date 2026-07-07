@@ -7,6 +7,9 @@ dist/
 # Vercel
 .vercel
 
+# Claude Code local config
+.claude/
+
 # env files (just in case)
 .env
 .env.*
