@@ -38,7 +38,7 @@ git push          # triggers Vercel deploy automatically
 
 - `saintsData.js` — static array of fixed-date saints; each entry has `id`, `feast_date` (MM-DD), `name`, `quote`, `prayer`, `reflection`, `biography`, `patron_of`, `virtue`. Spanish variants use `_es` suffix fields (e.g. `quote_es`, `biography_es`).
 - `liturgicalData.js` — static array of fixed-date liturgical days keyed by `date` (MM-DD); each entry carries parallel Novus Ordo (NO) and Vetus Ordo (VO) fields: `*_season`, `*_feast`, `*_rank`, `*_color`.
-- `movableFeasts.js` — computes Easter via the Anonymous Gregorian algorithm (valid 1583–4099) and derives all moveable feasts for the current year (Ash Wednesday through Christ the King). Returns parallel arrays via `getMovableSaints(year)` and `getMovableLiturgicalDays(year)`; both return `[]` on error so the app always loads. Also exports `computeSeason(mmdd, year, rite)` — a pure function that maps any `MM-DD` to its liturgical season string; `Today.jsx` imports it directly rather than going through the entity layer.
+- `movableFeasts.js` — computes Easter via the Anonymous Gregorian algorithm (valid 1583–4099) and derives all moveable feasts for the current year (Ash Wednesday through Christ the King). Returns parallel arrays via `getMovableSaints(year)` and `getMovableLiturgicalDays(year)`; both return `[]` on error so the app always loads. Also exports `computeSeason(mmdd, year, rite)` — a pure function that maps any `MM-DD` to its liturgical season string; `Today.jsx` imports it directly rather than going through the entity layer. The `getSundayEntries()` helper generates a liturgical entry for every non-dedicated Sunday: Laetare (4th Sunday of Lent, Easter −21 days) and Gaudete (3rd Sunday of Advent) are both special-cased to `color: 'rose'` inside the Lent/Advent loops — do not change them to purple.
 - `readingsData.js` — Sunday/feast Mass readings keyed by full ISO date (`YYYY-MM-DD`, not MM-DD — the NO lectionary cycle and movable calendar change readings year to year). Each entry has parallel `no` and `vo` blocks with a `readings` array (`label`/`label_es`, `citation`, `text`, `text_es`; section labels live in the data because the rites have different sections; `text_es: ''` falls back to English in the UI). Helpers: `getReadingsForDate(isoDate)`, `getUpcomingReadings(now?)` (today's entry or the nearest within 7 days). Sources: NO from bible.usccb.org (per-date URLs like `MMDDYY.cfm`, `/es/bible/lecturas/` for Spanish), VO from divinumofficium.com (1962 Missal; English/Latin only — Spanish VO propers come from rinconliturgico.blogspot.com, a Latin-Spanish 1962 missal blog with per-Sunday posts). Rendered by `ReadingsModal.jsx` via a banner on the Today tab.
 - `entities.js` — loads `saintsData.js` / `liturgicalData.js` via dynamic `import()` (module-level singleton promises, so each data file becomes a separate cacheable chunk), computes moveable feasts for the current year at module load, and exposes thin CRUD wrappers that merge moveable + static arrays per call:
   - `Saint` and `LiturgicalDay` are read-only (`createStaticEntity`)
@@ -173,29 +173,26 @@ Add entries to the `SUNDAY_READINGS` array in `src/api/readingsData.js`. Key mus
 ```bash
 UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
 
-# NO English — curl usually works; fall back to Playwright if Cloudflare blocks it
+# NO English — curl works for most dates; use Playwright (en-US locale) if Cloudflare blocks it:
 curl -s -A "$UA" "https://bible.usccb.org/bible/readings/MMDDYY.cfm"
 
-# NO Spanish — curl is always Cloudflare-blocked on /es/; use Playwright with a real context:
+# NO English fallback via Playwright (when curl returns a PoW challenge):
 node -e "
 const { chromium } = require('./node_modules/playwright');
 (async () => {
-  const b = await chromium.launch({
-    headless: true,
-    args: ['--disable-blink-features=AutomationControlled', '--no-sandbox']
-  });
-  const ctx = await b.newContext({
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    locale: 'es-MX',
-    extraHTTPHeaders: { 'Accept-Language': 'es-MX,es;q=0.9,en;q=0.5' }
-  });
+  const b = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
+  const ctx = await b.newContext({ locale: 'en-US', userAgent: '$UA' });
   const p = await ctx.newPage();
-  await p.goto('https://bible.usccb.org/es/bible/lecturas/MMDDYY.cfm', { waitUntil: 'load', timeout: 50000 });
-  await p.waitForTimeout(5000);
+  await p.goto('https://bible.usccb.org/bible/readings/MMDDYY.cfm', { waitUntil: 'networkidle', timeout: 30000 });
+  await p.waitForTimeout(3000);
   console.log(await p.locator('body').innerText());
   await b.close();
 })();
 "
+
+# NO Spanish — the /es/ subdomain is Cloudflare-blocked even with Playwright (as of Jul 2026).
+# Leave text_es: '' for affected entries; the UI falls back to English automatically.
+# If retrying, use Playwright with es-MX locale + longer waitForTimeout (8000+); success is not guaranteed.
 
 # VO English (1962 Missal; curl works)
 curl -s -A "$UA" "https://www.divinumofficium.com/cgi-bin/missa/missa.pl?date1=MM-DD-YYYY&command=prayLow&lang2=English"
