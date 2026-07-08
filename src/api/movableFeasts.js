@@ -140,9 +140,14 @@ function getSundayEntries(year) {
         noColor = 'white';
         noRank = 'Solemnity';
       } else if (noSeason === 'Advent') {
-        noFeast = `${ordinal(noAdvent)} Sunday of Advent`;
+        if (noAdvent === 3) {
+          noFeast = 'Gaudete Sunday (3rd Sunday of Advent)';
+          noColor = 'rose';
+        } else {
+          noFeast = `${ordinal(noAdvent)} Sunday of Advent`;
+          noColor = 'purple';
+        }
         noAdvent++;
-        noColor = 'purple';
       } else {
         // Ordinary Time after Pentecost/Trinity
         const num = postTrinityOTMap[mmdd];
@@ -179,9 +184,14 @@ function getSundayEntries(year) {
         voAfterPent++;
         voColor = 'green';
       } else if (voSeason === 'Advent') {
-        voFeast = `${ordinal(voAdvent)} Sunday of Advent`;
+        if (voAdvent === 3) {
+          voFeast = 'Gaudete Sunday (III Dominica Adventus)';
+          voColor = 'rose';
+        } else {
+          voFeast = `${ordinal(voAdvent)} Sunday of Advent`;
+          voColor = 'purple';
+        }
         voAdvent++;
-        voColor = 'purple';
       } else {
         voFeast = 'Sunday';
         voColor = 'green';
