@@ -60,15 +60,6 @@ Local-only auth stored under `fiat_lux_session` and `fiat_lux_users` in `localSt
 
 `App.jsx` renders a `SplashScreen` for 1.2 s (framer-motion `AnimatePresence`), then an `Onboarding` flow on first launch (until `fiat_lux_onboarded` is set), then the main app. Onboarding has five swipeable slides: Welcome → Language & Rite → Patron Saint (search saints by name, optional) → Features → Begin Today. It uses TanStack Query (`Saint.list()`) to populate the patron saint search on slide 3; it renders inside `QueryClientProvider` so the query is available. To re-trigger onboarding, clear `fiat_lux_onboarded` from localStorage. `initFontSize()` is called synchronously at the top of `App.jsx` to restore the saved font size before the first render. `OfflineBanner` (fixed top, z-[100], slides in from top) is rendered inside `QueryClientProvider` and is always mounted — it hides itself when online. The whole tree is wrapped in `ErrorBoundary` (`src/components/ErrorBoundary.jsx`).
 
-### Directory layout
-
-- `src/pages/` — full-page views (`Home.jsx` (tab shell), `Today.jsx`, `Calendar.jsx`, `SearchPage.jsx`, `Favorites.jsx`, `SettingsPage.jsx`, auth pages)
-- `src/components/` — shared/reusable UI (`SaintDetailModal.jsx`, `PrayerModal.jsx`, `ReadingsModal.jsx`, `BottomNav.jsx`, `SideNav.jsx`, `Onboarding.jsx`, `LatinCrossIcon.jsx`, `ProtectedRoute.jsx`, `AuthLayout.jsx`, `ScrollToTop.jsx`, etc.) and `ui/` (shadcn primitives)
-- `src/api/` — data layer (see above)
-- `src/lib/` — `AuthContext.jsx`, `LanguageContext.jsx`, `translations.js`, `query-client.js`, `utils.js` (shadcn `cn()`), `app-params.js` (exports `config.appName`), `PageNotFound.jsx` (404 route)
-- `src/hooks/` — all `use-*.jsx` hooks (except `ui/use-toast.jsx` inside shadcn)
-- `src/utils/index.ts` — pure utility functions
-
 ### Routing & navigation (`src/App.jsx`)
 
 Public routes (`/login`, `/register`, `/forgot-password`, `/reset-password`) are rendered outside `AuthenticatedApp`. The authenticated shell has a single `/` route that renders `Home`, which manages five tabs — Today, Calendar, Saints (Browse/Search), Favorites, Settings. Tab switches use framer-motion `AnimatePresence mode="wait"` with a subtle y-slide. The Saints tab renders `SearchPage`, which supports full-text search and sort by upcoming date, name, patron, or virtue.
