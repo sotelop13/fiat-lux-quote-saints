@@ -16,6 +16,7 @@ Planned features, content gaps, and polish items for Fiat Lux – Quote the Sain
 - [x] Filter chips on Browse — virtue filter chips narrow the saint list; sort pills reorder by Upcoming / Name / Patron / Virtue
 - [x] Browse sort & filter bugs fixed — scroll-to-results on change, `touch-manipulation` for iOS tap reliability, `lang` dep added
 - [x] Birthday saint in Settings — "By Name / By Birthday" tabs under Patron Saint; birthday stored as `fiat_lux_birthday`
+- [x] Saint images — public-domain Wikimedia Commons images added for ~40 major saints; displayed as a painting banner on the Today card and detail modal, and as circular avatars on Browse rows; image URLs live in `src/api/saintImages.js` and are applied at load time in `entities.js`
 
 ---
 

@@ -13,6 +13,28 @@ import { useRite } from '@/hooks/use-rite';
 
 const SORT_KEYS = ['upcoming', 'name', 'patron', 'virtue'];
 
+function SaintAvatar({ saint }) {
+  const [err, setErr] = useState(false);
+  if (saint?.image_url && !err) {
+    return (
+      <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 bg-secondary border border-border">
+        <img
+          src={saint.image_url}
+          alt=""
+          className="w-full h-full object-cover"
+          loading="lazy"
+          onError={() => setErr(true)}
+        />
+      </div>
+    );
+  }
+  return (
+    <div className="w-10 h-10 rounded-full shrink-0 bg-gold/10 border border-gold/20 flex items-center justify-center">
+      <span className="font-playfair font-bold text-gold text-base">{saint?.name?.charAt(0) ?? '✝'}</span>
+    </div>
+  );
+}
+
 function Highlight({ text = '', query = '' }) {
   if (!query.trim()) return <>{text}</>;
   const q = query.trim();
@@ -279,6 +301,7 @@ export default function SearchPage() {
               onClick={() => handleSelect(saint)}
               className="bg-card rounded-2xl border border-border px-5 py-4 text-left flex items-start gap-4 hover:bg-secondary transition-colors active:scale-[0.99]"
             >
+              <SaintAvatar saint={saint} />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
                   {saint.feast_date && liturgicalByDate[saint.feast_date] && (

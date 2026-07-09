@@ -56,6 +56,20 @@ export default function SaintDetailModal({ saint, liturgical, open, onClose, con
               <div className="w-10 h-1 bg-muted rounded-full" />
             </div>
 
+            {/* Hero image */}
+            {saint.image_url && (
+              <div className="relative h-52 overflow-hidden">
+                <img
+                  src={saint.image_url}
+                  alt=""
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  onError={(e) => { e.currentTarget.parentElement.style.display = 'none'; }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card/70 to-transparent pointer-events-none" />
+              </div>
+            )}
+
             {/* Header */}
             <div className="px-7 pt-4 pb-6 border-b border-border flex items-start justify-between">
               <div>

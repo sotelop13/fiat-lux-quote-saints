@@ -470,33 +470,47 @@ export default function Today() {
         <>
           {/* Saint card */}
           <div
-            className="bg-card rounded-3xl border border-border p-6 mb-4 cursor-pointer active:scale-[0.99] transition-transform"
+            className="bg-card rounded-3xl border border-border overflow-hidden mb-4 cursor-pointer active:scale-[0.99] transition-transform"
             onClick={() => setSaintOpen(true)}
           >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex-1 min-w-0 pr-3">
-                <p className="font-inter text-xs font-semibold tracking-[0.15em] uppercase text-gold mb-1">
-                  {t.saint_of_the_day}
-                </p>
-                <h2 className="font-playfair text-2xl font-bold text-foreground">{saint.name}</h2>
-                {saint.feast_date && (
-                  <p className="font-inter text-sm text-muted-foreground mt-0.5">
-                    {t.feast_label}: {formatFeastDate(saint.feast_date, lang)}
+            {saint.image_url && (
+              <div className="relative h-44 overflow-hidden">
+                <img
+                  src={saint.image_url}
+                  alt=""
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  onError={(e) => { e.currentTarget.parentElement.style.display = 'none'; }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card/70 to-transparent pointer-events-none" />
+              </div>
+            )}
+            <div className="p-6">
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex-1 min-w-0 pr-3">
+                  <p className="font-inter text-xs font-semibold tracking-[0.15em] uppercase text-gold mb-1">
+                    {t.saint_of_the_day}
                   </p>
+                  <h2 className="font-playfair text-2xl font-bold text-foreground">{saint.name}</h2>
+                  {saint.feast_date && (
+                    <p className="font-inter text-sm text-muted-foreground mt-0.5">
+                      {t.feast_label}: {formatFeastDate(saint.feast_date, lang)}
+                    </p>
+                  )}
+                </div>
+                {saint.virtue && (
+                  <Badge variant="outline" className="text-gold border-gold/40 bg-gold/5 shrink-0">
+                    {lang === 'es' ? (VIRTUES_ES[saint.virtue] ?? saint.virtue) : saint.virtue}
+                  </Badge>
                 )}
               </div>
-              {saint.virtue && (
-                <Badge variant="outline" className="text-gold border-gold/40 bg-gold/5 shrink-0">
-                  {lang === 'es' ? (VIRTUES_ES[saint.virtue] ?? saint.virtue) : saint.virtue}
-                </Badge>
-              )}
-            </div>
 
-            <div className="relative">
-              <span className="font-playfair text-5xl text-gold/20 leading-none absolute -top-2 -left-1">"</span>
-              <p className="font-playfair text-xl italic text-foreground/80 leading-relaxed pl-5">
-                {(lang === 'es' && saint.quote_es) ? saint.quote_es : saint.quote}
-              </p>
+              <div className="relative">
+                <span className="font-playfair text-5xl text-gold/20 leading-none absolute -top-2 -left-1">"</span>
+                <p className="font-playfair text-xl italic text-foreground/80 leading-relaxed pl-5">
+                  {(lang === 'es' && saint.quote_es) ? saint.quote_es : saint.quote}
+                </p>
+              </div>
             </div>
           </div>
 
