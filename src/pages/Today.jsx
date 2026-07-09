@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
-import { Heart, BookOpen, BookMarked, Loader2, Sparkles, Share2, CalendarDays, Star } from 'lucide-react';
+import { Heart, BookOpen, BookMarked, Loader2, Sparkles, Share2, CalendarDays, Star, ChevronRight } from 'lucide-react';
 import { Saint, LiturgicalDay, UserFavorite } from '@/api/entities';
 import { getUpcomingReadings } from '@/api/readingsData';
 import { todayMMDD, formatFeastDate, formatFeastDateParts, liturgicalColorClass, liturgicalColorDotClass, rankPriority, daysUntilFeast } from '@/utils';
@@ -37,6 +37,38 @@ function RiteToggle({ rite, onChange }) {
   );
 }
 
+const PERIOD_NAMES = {
+  en: { morning: 'Morning Offering', midday: 'The Angelus', evening: 'Evening Prayer', night: 'Night Prayer' },
+  es: { morning: 'Ofrenda Matutina', midday: 'El Ángelus', evening: 'Oración de la Tarde', night: 'Oración de la Noche' },
+};
+
+function getDailyPrayerPeriod() {
+  const h = new Date().getHours();
+  if (h >= 5 && h < 12) return 'morning';
+  if (h >= 12 && h < 18) return 'midday';
+  if (h >= 18 && h < 21) return 'evening';
+  return 'night';
+}
+
+function DailyPrayerCard({ lang, t, onOpen }) {
+  const period = getDailyPrayerPeriod();
+  return (
+    <button
+      onClick={onOpen}
+      className="flex items-center gap-3 bg-card border border-border rounded-xl px-4 py-3 mt-6 w-full text-left hover:bg-secondary transition-colors active:scale-[0.99]"
+    >
+      <div className="w-8 h-8 rounded-xl bg-gold/10 flex items-center justify-center shrink-0">
+        <BookOpen className="w-4 h-4 text-gold" />
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="font-inter text-xs font-semibold text-gold">{t.daily_prayer}</p>
+        <p className="font-inter text-sm font-semibold text-foreground">{PERIOD_NAMES[lang][period]}</p>
+      </div>
+      <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />
+    </button>
+  );
+}
+
 export default function Today() {
   const today = todayMMDD();
 
@@ -59,6 +91,7 @@ export default function Today() {
 
   const [saintOpen, setSaintOpen] = useState(false);
   const [prayerOpen, setPrayerOpen] = useState(false);
+  const [dailyPrayerOpen, setDailyPrayerOpen] = useState(false);
   const [readingsOpen, setReadingsOpen] = useState(false);
   const [saved, setSaved] = useState(false);
   const [upcomingSaint, setUpcomingSaint] = useState(null);
@@ -681,6 +714,9 @@ export default function Today() {
       {/* Upcoming feasts — only on saint days; feria days render this inline above */}
       {saint && upcomingFeastsSection}
 
+      {/* Daily Prayer — always accessible */}
+      <DailyPrayerCard lang={lang} t={t} onOpen={() => setDailyPrayerOpen(true)} />
+
       <SaintDetailModal
         saint={saint}
         liturgical={liturgical}
@@ -693,6 +729,11 @@ export default function Today() {
         saint={saint}
         open={prayerOpen}
         onClose={() => setPrayerOpen(false)}
+        lang={lang}
+      />
+      <PrayerModal
+        open={dailyPrayerOpen}
+        onClose={() => setDailyPrayerOpen(false)}
         lang={lang}
       />
       <SaintDetailModal

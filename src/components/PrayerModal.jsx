@@ -39,14 +39,14 @@ export default function PrayerModal({ saint, open, onClose, lang: langProp }) {
 
   const [period, setPeriod] = useState(getPrayerPeriod);
 
-  if (!saint) return null;
+  const prayer     = saint && ((lang === 'es' && saint.prayer_es)     ? saint.prayer_es     : saint.prayer);
+  const reflection = saint && ((lang === 'es' && saint.reflection_es) ? saint.reflection_es : saint.reflection);
 
-  const prayer     = (lang === 'es' && saint.prayer_es)     ? saint.prayer_es     : saint.prayer;
-  const reflection = (lang === 'es' && saint.reflection_es) ? saint.reflection_es : saint.reflection;
-
-  const defaultPrayer = lang === 'es'
-    ? `Oh Señor, que nos has dado el ejemplo de ${saint.name}, concédenos la gracia de imitar las virtudes de tus santos y seguir su santo ejemplo. Por Cristo nuestro Señor. Amén.`
-    : `O Lord, who hast given us the example of ${saint.name}, grant us the grace to imitate the virtues of Thy saints and to follow their holy example. Through Christ our Lord. Amen.`;
+  const defaultPrayer = saint
+    ? (lang === 'es'
+        ? `Oh Señor, que nos has dado el ejemplo de ${saint.name}, concédenos la gracia de imitar las virtudes de tus santos y seguir su santo ejemplo. Por Cristo nuestro Señor. Amén.`
+        : `O Lord, who hast given us the example of ${saint.name}, grant us the grace to imitate the virtues of Thy saints and to follow their holy example. Through Christ our Lord. Amen.`)
+    : null;
 
   const { label: periodLabel, text: periodText } = getPeriodContent(period, t);
 
@@ -81,7 +81,7 @@ export default function PrayerModal({ saint, open, onClose, lang: langProp }) {
                   {t.prayer_and_reflection}
                 </p>
                 <h2 className="font-playfair text-2xl font-bold text-foreground mt-1">
-                  {saint.name}
+                  {saint ? saint.name : t.daily_prayer}
                 </h2>
               </div>
               <button
@@ -93,23 +93,25 @@ export default function PrayerModal({ saint, open, onClose, lang: langProp }) {
             </div>
 
             <div className="px-7 py-6 flex flex-col gap-6">
-              {/* Saint's prayer */}
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-5 h-px bg-gold" />
-                  <p className="font-inter text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                    {t.todays_prayer}
-                  </p>
+              {/* Saint's prayer — only when a saint is passed */}
+              {saint && (
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-5 h-px bg-gold" />
+                    <p className="font-inter text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                      {t.todays_prayer}
+                    </p>
+                  </div>
+                  <div className="bg-secondary rounded-2xl px-5 py-5">
+                    <p className="font-playfair text-base italic text-foreground leading-loose">
+                      {prayer || defaultPrayer}
+                    </p>
+                  </div>
                 </div>
-                <div className="bg-secondary rounded-2xl px-5 py-5">
-                  <p className="font-playfair text-base italic text-foreground leading-loose">
-                    {prayer || defaultPrayer}
-                  </p>
-                </div>
-              </div>
+              )}
 
-              {/* Reflection */}
-              {reflection && (
+              {/* Reflection — only when a saint is passed */}
+              {saint && reflection && (
                 <div>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-5 h-px bg-gold" />
