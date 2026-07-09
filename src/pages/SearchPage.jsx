@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Search, X, Heart } from 'lucide-react';
 import { format } from 'date-fns';
@@ -54,6 +54,14 @@ export default function SearchPage() {
   const [lang] = useLanguage();
   const t = T[lang];
   const [rite] = useRite();
+
+  const resultsRef = useRef(null);
+  const didMount = useRef(false);
+
+  useEffect(() => {
+    if (!didMount.current) { didMount.current = true; return; }
+    resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [sortBy, filterVirtue]);
 
   const { data: saints = [] } = useQuery({
     queryKey: ['saints-all', rite],
@@ -122,7 +130,7 @@ export default function SearchPage() {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     const results = saints.filter(s => {
-      if (filterVirtue && s.virtue !== filterVirtue) return false;
+      if (filterVirtue && s.virtue?.trim() !== filterVirtue.trim()) return false;
       if (!q) return true;
       const feastStr = s.feast_date ? formatFeastDate(s.feast_date, lang).toLowerCase() : '';
       const virtueLabel = lang === 'es' ? (VIRTUES_ES[s.virtue] ?? s.virtue ?? '') : (s.virtue ?? '');
@@ -168,7 +176,7 @@ export default function SearchPage() {
         break;
     }
     return results;
-  }, [saints, query, sortBy, filterVirtue]);
+  }, [saints, query, sortBy, filterVirtue, lang]);
 
   const handleSelect = (saint) => {
     setSelectedSaint(saint);
@@ -209,7 +217,7 @@ export default function SearchPage() {
           <button
             key={key}
             onClick={() => setSortBy(key)}
-            className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-inter font-semibold transition-all border ${
+            className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-inter font-semibold transition-all border touch-manipulation ${
               sortBy === key
                 ? 'bg-gold text-white border-gold'
                 : 'border-border text-muted-foreground hover:text-foreground'
@@ -236,7 +244,7 @@ export default function SearchPage() {
               <button
                 key={v}
                 onClick={() => setFilterVirtue(f => f === v ? null : v)}
-                className={`shrink-0 px-2.5 py-1 rounded-full text-xs font-inter font-medium transition-all border ${
+                className={`shrink-0 px-2.5 py-1 rounded-full text-xs font-inter font-medium transition-all border touch-manipulation ${
                   filterVirtue === v
                     ? 'bg-gold text-white border-gold'
                     : 'border-border text-muted-foreground hover:text-foreground'
@@ -249,8 +257,8 @@ export default function SearchPage() {
         </div>
       )}
 
-      {/* Result count */}
-      <p className="font-inter text-xs text-muted-foreground mb-3">
+      {/* Result count — scroll target when sort/filter changes */}
+      <p ref={resultsRef} className="font-inter text-xs text-muted-foreground mb-3">
         {filtered.length} {filtered.length === 1 ? t.browse_result_saint : t.browse_result_saints}
         {filterVirtue ? ` ${tx(t.browse_with_virtue, { v: lang === 'es' ? (VIRTUES_ES[filterVirtue] ?? filterVirtue) : filterVirtue })}` : ''}
         {query ? ` ${tx(t.browse_matching, { q: query })}` : (!filterVirtue ? ` ${t.browse_in_calendar}` : '')}
