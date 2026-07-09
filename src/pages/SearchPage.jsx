@@ -22,7 +22,6 @@ function SaintAvatar({ saint }) {
           src={saint.image_url}
           alt=""
           className="w-full h-full object-cover"
-          loading="lazy"
           onError={() => setErr(true)}
         />
       </div>
@@ -80,10 +79,11 @@ export default function SearchPage() {
   const resultsRef = useRef(null);
   const didMount = useRef(false);
 
-  // Sort change → scroll to top so user sees the reordered list from the start
+  // Sort change → jump to top so user sees the reordered list from the beginning
+  // Using instant (no smooth) so the scroll doesn't interfere with subsequent taps on mobile
   useEffect(() => {
     if (!didMount.current) { didMount.current = true; return; }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   }, [sortBy]);
 
   const { data: saints = [] } = useQuery({
