@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import BottomNav from '@/components/BottomNav';
+import SideNav from '@/components/SideNav';
 import Today from './Today';
 import Calendar from './Calendar';
 import SearchPage from './SearchPage';
@@ -20,7 +21,8 @@ export default function Home() {
   const PageComponent = TABS[activeTab];
 
   return (
-    <div className="min-h-screen bg-background pb-28 overflow-hidden">
+    <div className="min-h-screen bg-background pb-28 md:pb-0 md:pl-16 lg:pl-56 overflow-hidden">
+      <SideNav activeTab={activeTab} onChange={setActiveTab} />
       <AnimatePresence mode="wait">
         <motion.div
           key={activeTab}

@@ -64,7 +64,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="px-5 pt-12 pb-12 max-w-lg mx-auto">
+    <div className="px-5 pt-12 pb-12 max-w-lg md:max-w-2xl mx-auto">
       <p className="font-inter text-xs font-medium tracking-[0.15em] uppercase text-gold mb-1">
         {t.account}
       </p>

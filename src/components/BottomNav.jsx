@@ -115,7 +115,7 @@ export default function BottomNav({ activeTab, onChange }) {
 
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 z-40 px-3 max-w-lg mx-auto inset-x-0"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 px-3 max-w-lg mx-auto inset-x-0"
       style={{ paddingBottom: 'max(10px, env(safe-area-inset-bottom, 10px))' }}
     >
       <motion.div

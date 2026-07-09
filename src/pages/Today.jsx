@@ -304,7 +304,7 @@ export default function Today() {
   }
 
   return (
-    <div className="px-5 pt-12 pb-12 max-w-lg mx-auto">
+    <div className="px-5 pt-12 pb-12 max-w-lg md:max-w-2xl mx-auto">
 
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
