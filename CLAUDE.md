@@ -157,9 +157,9 @@ The project root contains an `entities/` folder with three JSON schema stub file
 
 `Today.jsx` uses `LatinCrossIcon` (SVG, respects `currentColor`) for the Feria state — never the `✝` Unicode character, which renders purple via the OS emoji font on iOS/Android.
 
-### Content backlog (`Z-FUTURE_IMPROVEMENTS.txt`)
+### Content backlog (`BACKLOG.md`)
 
-Tracked list of known gaps and planned features. July–December saints are now complete. Remaining open items: virtue/patron filter chips on Browse, upcoming-feasts section on the Today tab. Check this file before adding new features to avoid duplicating planned work.
+Tracked list of known gaps and planned features with completed items marked. Remaining open items include: more saints for January–June, liturgical entries for recently added saint dates, Sunday readings from September 2026 onward, virtue/patron filter chips on Browse, and an upcoming-feasts strip on the Today tab. Check this file before adding new features to avoid duplicating planned work.
 
 ### Adding new saints or liturgical days
 
