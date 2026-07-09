@@ -31,6 +31,7 @@ export const T = {
     prayer_before_mass:  'Prayer before Mass',
     prayer_after_mass:   'Prayer after Mass',
     vo_no_spanish:       'Spanish text not available for the Extraordinary Form — showing English.',
+    readings_not_available: 'Readings not yet added for this Sunday',
 
     // SaintDetailModal
     feast_day:  'Feast Day',
@@ -68,6 +69,12 @@ export const T = {
     read_less:           'Read less',
     toast_saved:         'Saved to Favorites',
     toast_copied:        'Copied to clipboard',
+    color_white:         'White',
+    color_red:           'Red',
+    color_green:         'Green',
+    color_purple:        'Purple',
+    color_rose:          'Rose',
+    color_black:         'Black',
 
     // Favorites
     my_collection:     'My Collection',
@@ -229,6 +236,7 @@ export const T = {
     prayer_before_mass:  'Oración antes de la Misa',
     prayer_after_mass:   'Oración después de la Misa',
     vo_no_spanish:       'Texto en español no disponible para la Forma Extraordinaria — mostrando inglés.',
+    readings_not_available: 'Lecturas aún no disponibles para este domingo',
 
     // SaintDetailModal
     feast_day:  'Día de Fiesta',
@@ -266,6 +274,12 @@ export const T = {
     read_less:           'Leer menos',
     toast_saved:         'Guardado en Favoritos',
     toast_copied:        'Copiado al portapapeles',
+    color_white:         'Blanco',
+    color_red:           'Rojo',
+    color_green:         'Verde',
+    color_purple:        'Morado',
+    color_rose:          'Rosa',
+    color_black:         'Negro',
 
     // Favorites
     my_collection:     'Mi Colección',

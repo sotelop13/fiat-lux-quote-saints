@@ -216,6 +216,14 @@ export default function Calendar() {
     []
   );
 
+  // ISO date strings sort lexically, so min/max give the covered range of readingsData.js.
+  // Sundays outside this range simply have no data yet and stay silent — only genuine gaps
+  // inside the covered window get flagged, so the note doesn't blanket the whole future.
+  const [readingsMinDate, readingsMaxDate] = useMemo(() => {
+    const dates = SUNDAY_READINGS.map(r => r.date);
+    return [dates.reduce((a, b) => (a < b ? a : b)), dates.reduce((a, b) => (a > b ? a : b))];
+  }, []);
+
   const daysInMonth = getDaysInMonth(new Date(year, month));
   const firstDayOfWeek = getDay(startOfMonth(new Date(year, month)));
 
@@ -468,8 +476,16 @@ export default function Calendar() {
               const isPastDay = isCurrentMonthAndYear && day < today.getDate();
               const isoDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
               const dayReadings = SUNDAY_READINGS.find(r => r.date === isoDate) ?? null;
+              const isSunday = getDay(new Date(year, month, day)) === 0;
+              const isMissingReadings = !dayReadings && isSunday && isoDate >= readingsMinDate && isoDate <= readingsMaxDate;
               return (
               <div key={key} ref={el => { dayListRefs.current[key] = el; }} className={`flex flex-col gap-1.5 ${isPastDay ? 'opacity-50' : ''}`}>
+                {isMissingReadings && (
+                  <div className="flex items-center gap-3 rounded-xl border border-dashed border-border px-4 py-2.5">
+                    <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50 shrink-0" />
+                    <p className="font-inter text-xs text-muted-foreground/60">{t.readings_not_available}</p>
+                  </div>
+                )}
                 {dayReadings && (() => {
                   const rd = rite === 'VO' ? dayReadings.vo : dayReadings.no;
                   const title = (lang === 'es' && rd.title_es) ? rd.title_es : rd.title;
@@ -619,12 +635,12 @@ export default function Calendar() {
       {/* Colour legend */}
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-8 mb-6 justify-center">
         {[
-          { color: 'white',  label: 'White' },
-          { color: 'red',    label: 'Red' },
-          { color: 'green',  label: 'Green' },
-          { color: 'purple', label: 'Purple' },
-          { color: 'rose',   label: 'Rose' },
-          { color: 'black',  label: 'Black' },
+          { color: 'white',  label: t.color_white },
+          { color: 'red',    label: t.color_red },
+          { color: 'green',  label: t.color_green },
+          { color: 'purple', label: t.color_purple },
+          { color: 'rose',   label: t.color_rose },
+          { color: 'black',  label: t.color_black },
         ].map(({ color, label }) => (
           <div key={color} className="flex items-center gap-1.5">
             <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${liturgicalColorDotClass(color)}`} />
