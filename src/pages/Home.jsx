@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import BottomNav from '@/components/BottomNav';
 import SideNav from '@/components/SideNav';
 import Today from './Today';
-import Calendar from './Calendar';
-import SearchPage from './SearchPage';
-import Favorites from './Favorites';
-import SettingsPage from './SettingsPage';
+
+// Today is the default landing tab, so it stays eager (zero regression on first paint).
+// The other four are code-split out of the main bundle — they only load when visited.
+const Calendar = lazy(() => import('./Calendar'));
+const SearchPage = lazy(() => import('./SearchPage'));
+const Favorites = lazy(() => import('./Favorites'));
+const SettingsPage = lazy(() => import('./SettingsPage'));
 
 const TABS = {
   today: Today,
@@ -15,6 +18,14 @@ const TABS = {
   favorites: Favorites,
   settings: SettingsPage,
 };
+
+function TabFallback() {
+  return (
+    <div className="flex items-center justify-center min-h-[60vh]">
+      <div className="w-8 h-8 border-4 border-secondary border-t-gold rounded-full animate-spin" />
+    </div>
+  );
+}
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('today');
@@ -31,7 +42,9 @@ export default function Home() {
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.18, ease: 'easeOut' }}
         >
-          <PageComponent />
+          <Suspense fallback={<TabFallback />}>
+            <PageComponent />
+          </Suspense>
         </motion.div>
       </AnimatePresence>
       <BottomNav activeTab={activeTab} onChange={setActiveTab} />
