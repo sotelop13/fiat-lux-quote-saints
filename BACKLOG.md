@@ -13,6 +13,9 @@ Planned features, content gaps, and polish items for Fiat Lux – Quote the Sain
 - [x] Responsive layout — icon-only sidebar at `md` (768 px+), full sidebar with labels at `lg` (1024 px+); bottom nav on mobile only
 - [x] Sunday Mass readings — August 2026 entries added (NO + VO, EN only)
 - [x] Daily Prayer always accessible — `PrayerModal` works without a saint; persistent card on Today tab
+- [x] Filter chips on Browse — virtue filter chips narrow the saint list; sort pills reorder by Upcoming / Name / Patron / Virtue
+- [x] Browse sort & filter bugs fixed — scroll-to-results on change, `touch-manipulation` for iOS tap reliability, `lang` dep added
+- [x] Birthday saint in Settings — "By Name / By Birthday" tabs under Patron Saint; birthday stored as `fiat_lux_birthday`
 
 ---
 
@@ -26,8 +29,8 @@ Planned features, content gaps, and polish items for Fiat Lux – Quote the Sain
 
 ### Features
 
-- [ ] **Filter chips on Browse** — tap a virtue (Humility, Courage…) or patron category to narrow the saint list; pairs naturally with the existing sort options
 - [ ] **Upcoming feasts on Today tab** — a small strip showing the next 2–3 feast days coming up; data is already available via `getSaintsForYear`
+- [ ] **Patron category filter on Browse** — filter by patron category (e.g. "students", "sick") in addition to virtue; requires adding a `patron_category` field or parsing `patron_of`
 
 ### Polish
 

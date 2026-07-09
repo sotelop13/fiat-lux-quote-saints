@@ -112,6 +112,7 @@ All page containers use `max-w-lg md:max-w-2xl mx-auto` so content widens on tab
 | `fiat_lux_name_day` | User's patron saint name (text string for name-match banners) |
 | `fiat_lux_patron_saint_id` | Selected patron saint ID (e.g. `s-0601`) |
 | `fiat_lux_patron_feast_date` | Patron saint feast date `MM-DD` (cached so BottomNav avoids a query) |
+| `fiat_lux_birthday` | User's birth date as `MM-DD`; used by the "By Birthday" patron finder in Settings |
 | `fiat_lux_onboarded` | Set to `'true'` after first-launch onboarding |
 | `fiat_lux_notifications` | `'true'` when user has enabled daily saint notifications |
 | `fiat_lux_last_notification` | `Date.toDateString()` of the last shown notification (deduplicates per day) |
@@ -157,9 +158,22 @@ The project root contains an `entities/` folder with three JSON schema stub file
 
 `Today.jsx` uses `LatinCrossIcon` (SVG, respects `currentColor`) for the Feria state — never the `✝` Unicode character, which renders purple via the OS emoji font on iOS/Android.
 
+### `SettingsPage.jsx` — patron saint finder
+
+The Name Day section has a `findMode` state (`'name' | 'birthday'`) that toggles between two discovery modes; both write to the same single patron saint slot (`fiat_lux_patron_saint_id` / `fiat_lux_patron_feast_date`).
+
+- **By Name** — existing text input; filters `saints` by `s.name.includes(input)`, shows countdown, tap to select.
+- **By Birthday** — month + day `<select>` dropdowns; stores the selected date as `MM-DD` in `fiat_lux_birthday`; filters `saints` where `s.feast_date === birthday`; tap result to select as patron. `MONTHS_EN` / `MONTHS_ES` arrays and `daysInMonth()` helper are module-level constants in `SettingsPage.jsx`.
+
+The patron hero card at the top of the section is always shown when a patron is selected, regardless of `findMode`.
+
+### `SearchPage.jsx` — Browse
+
+Sort pills and virtue filter chips both carry `touch-manipulation` (Tailwind utility) to eliminate iOS double-tap delay inside `overflow-x-auto` containers. A `useEffect` on `[sortBy, filterVirtue]` scrolls the result-count line into view whenever either changes, so the user always sees the top of the reordered/filtered list. The `filtered` useMemo depends on `[saints, query, sortBy, filterVirtue, lang]` — `lang` is required because feast-date strings and Spanish virtue labels are computed inside the memo.
+
 ### Content backlog (`BACKLOG.md`)
 
-Tracked list of known gaps and planned features with completed items marked. Remaining open items include: more saints for January–June, liturgical entries for recently added saint dates, Sunday readings from September 2026 onward, virtue/patron filter chips on Browse, and an upcoming-feasts strip on the Today tab. Check this file before adding new features to avoid duplicating planned work.
+Tracked list of known gaps and planned features with completed items marked. Remaining open items include: more saints for January–June, liturgical entries for recently added saint dates, Sunday readings from September 2026 onward, an upcoming-feasts strip on the Today tab, and a patron-category filter on Browse. Check this file before adding new features to avoid duplicating planned work.
 
 ### Adding new saints or liturgical days
 
