@@ -60,7 +60,7 @@ export default function SearchPage() {
 
   useEffect(() => {
     if (!didMount.current) { didMount.current = true; return; }
-    resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [sortBy, filterVirtue]);
 
   const { data: saints = [] } = useQuery({
@@ -330,7 +330,7 @@ export default function SearchPage() {
           <p className="font-playfair text-lg text-muted-foreground">{t.browse_no_saints}</p>
           <p className="font-inter text-sm text-muted-foreground mt-1">
             {filterVirtue
-              ? tx(query ? t.browse_no_virtue_query : t.browse_no_virtue, { v: filterVirtue, q: query })
+              ? tx(query ? t.browse_no_virtue_query : t.browse_no_virtue, { v: lang === 'es' ? (VIRTUES_ES[filterVirtue] ?? filterVirtue) : filterVirtue, q: query })
               : t.browse_try_different}
           </p>
           {filterVirtue && (
