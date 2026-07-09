@@ -5,6 +5,7 @@ import { Heart, BookOpen, BookMarked, Loader2, Sparkles, Share2, CalendarDays, S
 import { Saint, LiturgicalDay, UserFavorite } from '@/api/entities';
 import { getUpcomingReadings } from '@/api/readingsData';
 import { todayMMDD, formatFeastDate, formatFeastDateParts, liturgicalColorClass, liturgicalColorDotClass, rankPriority, daysUntilFeast } from '@/utils';
+import LatinCrossIcon from '@/components/LatinCrossIcon';
 import SaintDetailModal from '@/components/SaintDetailModal';
 import PrayerModal from '@/components/PrayerModal';
 import ReadingsModal from '@/components/ReadingsModal';
@@ -552,7 +553,7 @@ export default function Today() {
             <>
               <div className="text-center mb-6">
                 <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center mx-auto mb-4">
-                  <span className="font-playfair text-2xl text-muted-foreground">✝</span>
+                  <LatinCrossIcon className="w-7 h-7 text-muted-foreground" />
                 </div>
                 <p className="font-playfair text-xl text-foreground mb-1">{t.feria}</p>
                 <p className="font-inter text-sm text-muted-foreground">{t.no_feast_today}</p>
