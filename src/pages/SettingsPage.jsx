@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@/lib/AuthContext';
@@ -15,6 +15,17 @@ import { LogOut, User, Sun, Moon, Monitor, Languages, Star, X, Check, Download, 
 import { useNotifications, notifSupported } from '@/hooks/use-notifications';
 
 
+
+const MONTHS_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTHS_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+function daysInMonth(month) {
+  if (!month) return 31;
+  const m = parseInt(month, 10);
+  if (m === 2) return 28;
+  if ([4, 6, 9, 11].includes(m)) return 30;
+  return 31;
+}
 
 const THEME_OPTIONS = [
   { value: 'light',  icon: Sun     },
@@ -38,6 +49,16 @@ export default function SettingsPage() {
   const { permission, enabled, requestAndEnable, disable } = useNotifications();
   const t = T[lang];
 
+  const [findMode, setFindMode] = useState('name');
+  const [birthday, setBirthdayState] = useState(() => localStorage.getItem('fiat_lux_birthday') ?? '');
+  const setBirthday = (val) => {
+    setBirthdayState(val);
+    if (val) localStorage.setItem('fiat_lux_birthday', val);
+    else localStorage.removeItem('fiat_lux_birthday');
+  };
+  const birthdayMonth = birthday.slice(0, 2);
+  const birthdayDay = birthday.slice(3, 5);
+
   const { data: saints = [] } = useQuery({
     queryKey: ['saints-all'],
     queryFn: () => Saint.list(),
@@ -56,6 +77,14 @@ export default function SettingsPage() {
     () => saints.find(s => s.id === patronId) ?? null,
     [saints, patronId]
   );
+
+  const birthdaySaints = useMemo(() => {
+    if (!birthday) return [];
+    return saints
+      .filter(s => s.feast_date === birthday)
+      .map(s => ({ ...s, daysAway: daysUntilFeast(s.feast_date) }))
+      .sort((a, b) => a.daysAway - b.daysAway);
+  }, [saints, birthday]);
 
   function countdownLabel(days) {
     if (days === 0) return t.days_today;
@@ -85,7 +114,7 @@ export default function SettingsPage() {
 
       <Separator className="my-4" />
 
-      {/* Name Day */}
+      {/* Name Day / Patron Saint */}
       <div className="flex items-center gap-2 mb-1">
         <Star className="w-3.5 h-3.5 text-gold" />
         <p className="font-inter text-xs font-semibold tracking-[0.15em] uppercase text-gold">
@@ -133,57 +162,153 @@ export default function SettingsPage() {
         </div>
       )}
 
-      {/* Name search input */}
-      <input
-        type="text"
-        value={nameDayName}
-        onChange={e => setNameDayName(e.target.value)}
-        placeholder={t.name_day_your_name}
-        className="w-full bg-secondary border border-border rounded-xl px-4 py-3 font-inter text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-gold/40 transition mb-3"
-      />
+      {/* Find by tabs */}
+      <div className="flex gap-2 mb-4">
+        {[{ key: 'name', label: t.find_by_name }, { key: 'birthday', label: t.find_by_birthday }].map(({ key, label }) => (
+          <button
+            key={key}
+            onClick={() => setFindMode(key)}
+            className={`flex-1 py-2.5 rounded-xl border transition-all font-inter text-sm font-medium
+              ${findMode === key ? 'border-gold bg-gold/5 text-gold' : 'border-border text-muted-foreground hover:text-foreground'}`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
 
-      {nameDayName.trim() && (
-        nameDayMatches.length === 0 ? (
-          <p className="font-inter text-xs text-muted-foreground mb-4">{t.name_day_no_match}</p>
-        ) : (
-          <div className="flex flex-col gap-2 mb-4">
-            {!patronSaint && (
-              <p className="font-inter text-xs text-muted-foreground -mt-1 mb-0.5">
-                {t.name_day_tap_to_select}
-              </p>
-            )}
-            {nameDayMatches.map(s => {
-              const isSelected = s.id === patronId;
-              return (
-                <button
-                  key={s.id}
-                  onClick={() => setPatronId(isSelected ? '' : s.id, isSelected ? '' : s.feast_date)}
-                  className={`w-full text-left rounded-xl border px-4 py-3 flex items-start gap-3 transition-all active:scale-[0.99] ${
-                    isSelected
-                      ? 'border-gold/40 bg-gold/5'
-                      : 'border-border bg-card hover:bg-secondary'
-                  }`}
-                >
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2 mb-0.5">
-                      <p className="font-inter text-sm font-semibold text-foreground">{s.name}</p>
-                      <span className="font-inter text-xs font-semibold text-gold shrink-0">
-                        {countdownLabel(s.daysAway)}
-                      </span>
-                    </div>
-                    <p className="font-inter text-xs text-muted-foreground">{formatFeastDate(s.feast_date, lang)}</p>
-                    {s.quote && (
-                      <p className="font-playfair text-xs italic text-foreground/60 mt-1.5 line-clamp-2 leading-relaxed">
-                        "{s.quote}"
-                      </p>
-                    )}
-                  </div>
-                  {isSelected && <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />}
-                </button>
-              );
-            })}
+      {/* By Name */}
+      {findMode === 'name' && (
+        <>
+          <input
+            type="text"
+            value={nameDayName}
+            onChange={e => setNameDayName(e.target.value)}
+            placeholder={t.name_day_your_name}
+            className="w-full bg-secondary border border-border rounded-xl px-4 py-3 font-inter text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-gold/40 transition mb-3"
+          />
+          {nameDayName.trim() && (
+            nameDayMatches.length === 0 ? (
+              <p className="font-inter text-xs text-muted-foreground mb-4">{t.name_day_no_match}</p>
+            ) : (
+              <div className="flex flex-col gap-2 mb-4">
+                {!patronSaint && (
+                  <p className="font-inter text-xs text-muted-foreground -mt-1 mb-0.5">
+                    {t.name_day_tap_to_select}
+                  </p>
+                )}
+                {nameDayMatches.map(s => {
+                  const isSelected = s.id === patronId;
+                  return (
+                    <button
+                      key={s.id}
+                      onClick={() => setPatronId(isSelected ? '' : s.id, isSelected ? '' : s.feast_date)}
+                      className={`w-full text-left rounded-xl border px-4 py-3 flex items-start gap-3 transition-all active:scale-[0.99] ${
+                        isSelected ? 'border-gold/40 bg-gold/5' : 'border-border bg-card hover:bg-secondary'
+                      }`}
+                    >
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2 mb-0.5">
+                          <p className="font-inter text-sm font-semibold text-foreground">{s.name}</p>
+                          <span className="font-inter text-xs font-semibold text-gold shrink-0">
+                            {countdownLabel(s.daysAway)}
+                          </span>
+                        </div>
+                        <p className="font-inter text-xs text-muted-foreground">{formatFeastDate(s.feast_date, lang)}</p>
+                        {s.quote && (
+                          <p className="font-playfair text-xs italic text-foreground/60 mt-1.5 line-clamp-2 leading-relaxed">
+                            "{s.quote}"
+                          </p>
+                        )}
+                      </div>
+                      {isSelected && <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />}
+                    </button>
+                  );
+                })}
+              </div>
+            )
+          )}
+        </>
+      )}
+
+      {/* By Birthday */}
+      {findMode === 'birthday' && (
+        <>
+          <div className="flex gap-2 mb-3">
+            <select
+              value={birthdayMonth}
+              onChange={e => {
+                const m = e.target.value;
+                const maxD = daysInMonth(m);
+                const d = birthdayDay && parseInt(birthdayDay) > maxD
+                  ? String(maxD).padStart(2, '0')
+                  : (birthdayDay || '01');
+                setBirthday(m ? `${m}-${d}` : '');
+              }}
+              className="flex-1 bg-secondary border border-border rounded-xl px-3 py-3 font-inter text-sm text-foreground outline-none focus:ring-2 focus:ring-gold/40 transition"
+            >
+              <option value="">{t.birthday_month}</option>
+              {(lang === 'es' ? MONTHS_ES : MONTHS_EN).map((name, i) => (
+                <option key={i} value={String(i + 1).padStart(2, '0')}>{name}</option>
+              ))}
+            </select>
+            <select
+              value={birthdayDay}
+              onChange={e => {
+                const d = e.target.value;
+                setBirthday(birthdayMonth ? `${birthdayMonth}-${d}` : '');
+              }}
+              disabled={!birthdayMonth}
+              className="w-24 bg-secondary border border-border rounded-xl px-3 py-3 font-inter text-sm text-foreground outline-none focus:ring-2 focus:ring-gold/40 transition disabled:opacity-40"
+            >
+              <option value="">{t.birthday_day}</option>
+              {Array.from({ length: daysInMonth(birthdayMonth) }, (_, i) => {
+                const d = String(i + 1).padStart(2, '0');
+                return <option key={d} value={d}>{i + 1}</option>;
+              })}
+            </select>
           </div>
-        )
+          {birthday && (
+            birthdaySaints.length === 0 ? (
+              <p className="font-inter text-xs text-muted-foreground mb-4">{t.birthday_no_saints}</p>
+            ) : (
+              <div className="flex flex-col gap-2 mb-4">
+                {!patronSaint && (
+                  <p className="font-inter text-xs text-muted-foreground -mt-1 mb-0.5">
+                    {t.name_day_tap_to_select}
+                  </p>
+                )}
+                {birthdaySaints.map(s => {
+                  const isSelected = s.id === patronId;
+                  return (
+                    <button
+                      key={s.id}
+                      onClick={() => setPatronId(isSelected ? '' : s.id, isSelected ? '' : s.feast_date)}
+                      className={`w-full text-left rounded-xl border px-4 py-3 flex items-start gap-3 transition-all active:scale-[0.99] ${
+                        isSelected ? 'border-gold/40 bg-gold/5' : 'border-border bg-card hover:bg-secondary'
+                      }`}
+                    >
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2 mb-0.5">
+                          <p className="font-inter text-sm font-semibold text-foreground">{s.name}</p>
+                          <span className="font-inter text-xs font-semibold text-gold shrink-0">
+                            {countdownLabel(s.daysAway)}
+                          </span>
+                        </div>
+                        <p className="font-inter text-xs text-muted-foreground">{formatFeastDate(s.feast_date, lang)}</p>
+                        {s.quote && (
+                          <p className="font-playfair text-xs italic text-foreground/60 mt-1.5 line-clamp-2 leading-relaxed">
+                            "{s.quote}"
+                          </p>
+                        )}
+                      </div>
+                      {isSelected && <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />}
+                    </button>
+                  );
+                })}
+              </div>
+            )
+          )}
+        </>
       )}
 
       <Separator className="my-4" />
