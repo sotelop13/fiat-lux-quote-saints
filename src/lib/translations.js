@@ -135,6 +135,8 @@ export const T = {
     sign_out:   'Sign Out',
 
     // SearchPage sort options
+    browse_sort_by:  'Sort by',
+    browse_filter:   'Filter',
     sort_upcoming: 'Upcoming',
     sort_name:     'Name',
     sort_patron:   'Patron',
@@ -331,6 +333,8 @@ export const T = {
     sign_out:   'Cerrar Sesión',
 
     // SearchPage sort options
+    browse_sort_by:  'Ordenar por',
+    browse_filter:   'Filtrar',
     sort_upcoming: 'Próximos',
     sort_name:     'Nombre',
     sort_patron:   'Patrón',

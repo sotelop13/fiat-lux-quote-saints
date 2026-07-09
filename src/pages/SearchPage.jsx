@@ -80,10 +80,11 @@ export default function SearchPage() {
   const resultsRef = useRef(null);
   const didMount = useRef(false);
 
+  // Sort change → scroll to top so user sees the reordered list from the start
   useEffect(() => {
     if (!didMount.current) { didMount.current = true; return; }
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [sortBy, filterVirtue]);
+  }, [sortBy]);
 
   const { data: saints = [] } = useQuery({
     queryKey: ['saints-all', rite],
@@ -239,7 +240,8 @@ export default function SearchPage() {
       </div>
 
       {/* Sort pills */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-1 scrollbar-none">
+      <div className="flex items-center gap-2 mb-3 overflow-x-auto pb-1 scrollbar-none">
+        <p className="font-inter text-xs font-semibold uppercase tracking-widest text-muted-foreground shrink-0">{t.browse_sort_by}</p>
         {SORT_KEYS.map((key) => (
           <button
             key={key}
@@ -259,7 +261,7 @@ export default function SearchPage() {
       {virtues.length > 0 && (
         <div className="mb-4">
           <div className="flex items-center gap-2 mb-2">
-            <p className="font-inter text-xs font-semibold uppercase tracking-widest text-muted-foreground">{t.virtue}</p>
+            <p className="font-inter text-xs font-semibold uppercase tracking-widest text-muted-foreground">{t.browse_filter} — {t.virtue}</p>
             {filterVirtue && (
               <button onClick={() => setFilterVirtue(null)} className="font-inter text-xs text-gold hover:underline">
                 {t.browse_filter_clear}
@@ -285,7 +287,7 @@ export default function SearchPage() {
       )}
 
       {/* Result count — scroll target when sort/filter changes */}
-      <p ref={resultsRef} className="font-inter text-xs text-muted-foreground mb-3">
+      <p ref={resultsRef} className={`font-inter text-xs mb-3 transition-colors ${filterVirtue ? 'text-gold font-semibold' : 'text-muted-foreground'}`}>
         {filtered.length} {filtered.length === 1 ? t.browse_result_saint : t.browse_result_saints}
         {filterVirtue ? ` ${tx(t.browse_with_virtue, { v: lang === 'es' ? (VIRTUES_ES[filterVirtue] ?? filterVirtue) : filterVirtue })}` : ''}
         {query ? ` ${tx(t.browse_matching, { q: query })}` : (!filterVirtue ? ` ${t.browse_in_calendar}` : '')}
