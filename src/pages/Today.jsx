@@ -54,19 +54,21 @@ function getDailyPrayerPeriod() {
 function DailyPrayerCard({ lang, t, onOpen }) {
   const period = getDailyPrayerPeriod();
   return (
-    <button
-      onClick={onOpen}
-      className="flex items-center gap-3 bg-card border border-border rounded-xl px-4 py-3 mt-6 w-full text-left hover:bg-secondary transition-colors active:scale-[0.99]"
-    >
-      <div className="w-8 h-8 rounded-xl bg-gold/10 flex items-center justify-center shrink-0">
-        <BookOpen className="w-4 h-4 text-gold" />
+    <div className="mt-6">
+      <div className="flex items-center gap-2 mb-3">
+        <BookOpen className="w-3.5 h-3.5 text-gold" />
+        <p className="font-inter text-xs font-semibold tracking-[0.12em] uppercase text-gold">
+          {t.daily_prayer}
+        </p>
       </div>
-      <div className="flex-1 min-w-0">
-        <p className="font-inter text-xs font-semibold text-gold">{t.daily_prayer}</p>
-        <p className="font-inter text-sm font-semibold text-foreground">{PERIOD_NAMES[lang][period]}</p>
-      </div>
-      <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />
-    </button>
+      <button
+        onClick={onOpen}
+        className="flex items-center gap-3 bg-card rounded-xl border border-border px-4 py-3 w-full text-left hover:bg-secondary transition-colors active:scale-[0.99]"
+      >
+        <p className="flex-1 font-inter text-sm font-semibold text-foreground">{PERIOD_NAMES[lang][period]}</p>
+        <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />
+      </button>
+    </div>
   );
 }
 
