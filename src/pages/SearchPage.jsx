@@ -170,7 +170,12 @@ export default function SearchPage() {
           s.prayer_es?.toLowerCase().includes(q)
         );
       }
-      return false;
+      return (
+        s.quote?.toLowerCase().includes(q) ||
+        s.biography?.toLowerCase().includes(q) ||
+        s.reflection?.toLowerCase().includes(q) ||
+        s.prayer?.toLowerCase().includes(q)
+      );
     });
 
     switch (sortBy) {
