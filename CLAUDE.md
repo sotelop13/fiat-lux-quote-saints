@@ -57,12 +57,12 @@ Local-only auth stored under `fiat_lux_session` and `fiat_lux_users` in `localSt
 
 ### App startup sequence
 
-`App.jsx` renders a `SplashScreen` for 1.2 s (framer-motion `AnimatePresence`), then an `Onboarding` flow on first launch (until `fiat_lux_onboarded` is set), then the main app. `initFontSize()` is called synchronously at the top of `App.jsx` to restore the saved font size before the first render. `OfflineBanner` (fixed top, z-[100], slides in from top) is rendered inside `QueryClientProvider` and is always mounted — it hides itself when online. The whole tree is wrapped in `ErrorBoundary` (`src/components/ErrorBoundary.jsx`).
+`App.jsx` renders a `SplashScreen` for 1.2 s (framer-motion `AnimatePresence`), then an `Onboarding` flow on first launch (until `fiat_lux_onboarded` is set), then the main app. Onboarding has five swipeable slides: Welcome → Language & Rite → Patron Saint (search saints by name, optional) → Features → Begin Today. It uses TanStack Query (`Saint.list()`) to populate the patron saint search on slide 3; it renders inside `QueryClientProvider` so the query is available. To re-trigger onboarding, clear `fiat_lux_onboarded` from localStorage. `initFontSize()` is called synchronously at the top of `App.jsx` to restore the saved font size before the first render. `OfflineBanner` (fixed top, z-[100], slides in from top) is rendered inside `QueryClientProvider` and is always mounted — it hides itself when online. The whole tree is wrapped in `ErrorBoundary` (`src/components/ErrorBoundary.jsx`).
 
 ### Directory layout
 
 - `src/pages/` — full-page views (`Home.jsx` (tab shell), `Today.jsx`, `Calendar.jsx`, `SearchPage.jsx`, `Favorites.jsx`, `SettingsPage.jsx`, auth pages)
-- `src/components/` — shared/reusable UI (`SaintDetailModal.jsx`, `PrayerModal.jsx`, `ReadingsModal.jsx`, `BottomNav.jsx`, `Onboarding.jsx`, `ProtectedRoute.jsx`, `AuthLayout.jsx`, `ScrollToTop.jsx`, etc.) and `ui/` (shadcn primitives)
+- `src/components/` — shared/reusable UI (`SaintDetailModal.jsx`, `PrayerModal.jsx`, `ReadingsModal.jsx`, `BottomNav.jsx`, `SideNav.jsx`, `Onboarding.jsx`, `LatinCrossIcon.jsx`, `ProtectedRoute.jsx`, `AuthLayout.jsx`, `ScrollToTop.jsx`, etc.) and `ui/` (shadcn primitives)
 - `src/api/` — data layer (see above)
 - `src/lib/` — `AuthContext.jsx`, `LanguageContext.jsx`, `translations.js`, `query-client.js`, `utils.js` (shadcn `cn()`), `app-params.js` (exports `config.appName`), `PageNotFound.jsx` (404 route)
 - `src/hooks/` — all `use-*.jsx` hooks (except `ui/use-toast.jsx` inside shadcn)
@@ -70,7 +70,16 @@ Local-only auth stored under `fiat_lux_session` and `fiat_lux_users` in `localSt
 
 ### Routing & navigation (`src/App.jsx`)
 
-Public routes (`/login`, `/register`, `/forgot-password`, `/reset-password`) are rendered outside `AuthenticatedApp`. The authenticated shell has a single `/` route that renders `Home`, which manages five tabs — Today, Calendar, Saints (Browse/Search), Favorites, Settings — via a `BottomNav`. Tab switches use framer-motion `AnimatePresence mode="wait"` with a subtle y-slide. The Saints tab renders `SearchPage`, which supports full-text search and sort by upcoming date, name, patron, or virtue.
+Public routes (`/login`, `/register`, `/forgot-password`, `/reset-password`) are rendered outside `AuthenticatedApp`. The authenticated shell has a single `/` route that renders `Home`, which manages five tabs — Today, Calendar, Saints (Browse/Search), Favorites, Settings. Tab switches use framer-motion `AnimatePresence mode="wait"` with a subtle y-slide. The Saints tab renders `SearchPage`, which supports full-text search and sort by upcoming date, name, patron, or virtue.
+
+### Responsive layout (`src/pages/Home.jsx`, `src/components/SideNav.jsx`, `src/components/BottomNav.jsx`)
+
+Navigation is breakpoint-aware:
+- **Mobile (< 768 px / `md`)** — `BottomNav` fixed at the bottom with a spring-animated glass loupe that tracks the active tab and follows the user's finger. `Home.jsx` adds `pb-28` to keep content clear of it.
+- **Tablet / `md` (768–1023 px)** — `BottomNav` hidden (`md:hidden`); `SideNav` shows as a 64 px icon-only rail on the left. `Home.jsx` offsets the content area with `md:pl-16`.
+- **Desktop / `lg` (1024 px+)** — `SideNav` expands to 224 px with icon + label text and the app name. Content offset becomes `lg:pl-56`.
+
+All page containers use `max-w-lg md:max-w-2xl mx-auto` so content widens on tablet/desktop. `SideNav` mirrors the same five tabs and patron-badge logic as `BottomNav`.
 
 ### i18n (`src/lib/LanguageContext.jsx`, `src/lib/translations.js`)
 
@@ -142,9 +151,15 @@ Dark/light/system theme is managed by `next-themes` (`useTheme()`). The `Setting
 
 The project root contains an `entities/` folder with three JSON schema stub files (`Saint`, `LiturgicalDay`, `UserFavorite`). These are base44 platform scaffolding artifacts — they define the entity schemas used when the project was generated. They are **not imported at runtime**; the actual data and CRUD logic live entirely in `src/api/`.
 
+### `PrayerModal.jsx`
+
+`PrayerModal` accepts an optional `saint` prop. When `saint` is provided it shows the saint's prayer, reflection, and the time-based daily prayers (Morning Offering / Angelus / Evening Prayer / Night Prayer). When `saint` is omitted or `null` it shows only the daily prayer section, with "Daily Prayer" as the header. `Today.jsx` renders two instances: one tied to the active saint (opened by the Pray button on saint cards), and a second with no saint opened by a persistent `DailyPrayerCard` component that is always visible at the bottom of the Today tab regardless of whether there is a feast.
+
+`Today.jsx` uses `LatinCrossIcon` (SVG, respects `currentColor`) for the Feria state — never the `✝` Unicode character, which renders purple via the OS emoji font on iOS/Android.
+
 ### Content backlog (`Z-FUTURE_IMPROVEMENTS.txt`)
 
-Tracked list of known gaps and planned features: July–December saints, missing liturgical entries, virtue/patron filter chips on Browse, a "no saint today" fallback, and upcoming-feasts section on the Today tab. Check this file before adding new features to avoid duplicating planned work.
+Tracked list of known gaps and planned features. July–December saints are now complete. Remaining open items: virtue/patron filter chips on Browse, upcoming-feasts section on the Today tab. Check this file before adding new features to avoid duplicating planned work.
 
 ### Adding new saints or liturgical days
 
