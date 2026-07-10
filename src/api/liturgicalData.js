@@ -286,6 +286,10 @@ export const LITURGICAL_DAYS = [
     vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
 
   // ─── JULY ───────────────────────────────────────────────────────────────────
+  { id: 'ld-0701', date: '07-01',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Junípero Serra', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Most Precious Blood of Our Lord Jesus Christ', vetus_ordo_rank: 'Duplex I Classis', vetus_ordo_color: 'red' },
+
   { id: 'ld-0702', date: '07-02',
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Feria', novus_ordo_rank: 'Feria', novus_ordo_color: 'green',
     vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Visitation of the Blessed Virgin Mary', vetus_ordo_rank: 'Duplex II Classis', vetus_ordo_color: 'white' },
@@ -302,6 +306,22 @@ export const LITURGICAL_DAYS = [
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Benedict', novus_ordo_rank: 'Memorial', novus_ordo_color: 'white',
     vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Pius I, Pope and Martyr', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
 
+  { id: 'ld-0712', date: '07-12',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saints Louis and Zélie Martin', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saints John Gualbert, Abbot; Nabor and Felix, Martyrs', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0717', date: '07-17',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Teresa of St. Augustine and Companions, Martyrs of Compiègne', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Alexis, Confessor', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0718', date: '07-18',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Feria', novus_ordo_rank: 'Feria', novus_ordo_color: 'green',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Camillus de Lellis, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0720', date: '07-20',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Apollinaris', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Jerome Emiliani, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
   { id: 'ld-0722', date: '07-22',
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Mary Magdalene', novus_ordo_rank: 'Feast', novus_ordo_color: 'white',
     vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Mary Magdalene, Penitent', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
@@ -309,6 +329,10 @@ export const LITURGICAL_DAYS = [
   { id: 'ld-0725', date: '07-25',
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint James the Apostle', novus_ordo_rank: 'Feast', novus_ordo_color: 'red',
     vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint James the Apostle', vetus_ordo_rank: 'Duplex II Classis', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0730', date: '07-30',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Peter Chrysologus', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saints Abdon and Sennen, Martyrs', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
 
   { id: 'ld-0731', date: '07-31',
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Ignatius of Loyola', novus_ordo_rank: 'Memorial', novus_ordo_color: 'white',
