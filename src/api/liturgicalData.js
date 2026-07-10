@@ -703,6 +703,18 @@ export const LITURGICAL_DAYS = [
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Maria Goretti', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
     vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Octave of Saints Peter and Paul', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'red' },
 
+  { id: 'ld-0701', date: '07-01',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Junípero Serra', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Most Precious Blood of Our Lord Jesus Christ', vetus_ordo_rank: 'Duplex II Classis', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0707', date: '07-07',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Willibald of Eichstätt', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Willibald, Bishop', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0708', date: '07-08',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Kilian', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Kilian and Companions, Martyrs', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
+
   { id: 'ld-0711', date: '07-11',
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Benedict', novus_ordo_rank: 'Memorial', novus_ordo_color: 'white',
     vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Pius I, Pope and Martyr', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
