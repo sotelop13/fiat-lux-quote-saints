@@ -540,6 +540,83 @@ export const LITURGICAL_DAYS = [
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Visitation of the Blessed Virgin Mary', novus_ordo_rank: 'Feast', novus_ordo_color: 'white',
     vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
 
+  // ─── MAY (additional) ───────────────────────────────────────────────────────
+  { id: 'ld-0504', date: '05-04',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Florian of Lorch', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Florian, Martyr', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0505', date: '05-05',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Hilary of Arles', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Hilary of Arles, Bishop', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0506', date: '05-06',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Evodius of Antioch', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Evodius of Antioch, Bishop', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0507', date: '05-07',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Rose Venerini', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0508', date: '05-08',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Peter of Tarentaise', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Peter of Tarentaise, Bishop', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0509', date: '05-09',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Pachomius', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Pachomius, Abbot', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0510', date: '05-10',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Antoninus of Florence', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Antoninus, Bishop', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0511', date: '05-11',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Mamertus', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Mamertus, Bishop', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0512', date: '05-12',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saints Nereus and Achilleus', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saints Nereus and Achilleus, Martyrs', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0516', date: '05-16',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Brendan the Navigator', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Brendan, Abbot', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0517', date: '05-17',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Paschal Baylon', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Paschal Baylon, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0518', date: '05-18',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Pope Saint John I', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Pope Saint John I, Martyr', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0519', date: '05-19',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Ivo of Kermartin', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Ivo, Confessor', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0521', date: '05-21',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Christopher Magallanes and Companions', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0523', date: '05-23',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint William of Perth', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint William of Perth, Martyr', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0524', date: '05-24',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Vincent of Lérins', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Vincent of Lérins, Confessor', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0527', date: '05-27',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Augustine of Canterbury', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Augustine of Canterbury, Bishop', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0528', date: '05-28',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Germain of Paris', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Germain of Paris, Bishop', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0529', date: '05-29',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Pope Saint Paul VI', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
   // ─── JUNE ───────────────────────────────────────────────────────────────────
   { id: 'ld-0601', date: '06-01',
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Justin Martyr', novus_ordo_rank: 'Memorial', novus_ordo_color: 'red',
