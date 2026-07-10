@@ -782,4 +782,40 @@ export const LITURGICAL_DAYS = [
   { id: 'ld-1223', date: '12-23',
     novus_ordo_season: 'Advent', novus_ordo_feast: 'Saint John of Kanty', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
     vetus_ordo_season: 'Advent', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'purple' },
+
+  { id: 'ld-0901', date: '09-01',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Giles', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0902', date: '09-02',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Blessed Martyrs of September, 1792', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Stephen, King and Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0904', date: '09-04',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Rosalia', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0906', date: '09-06',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Blessed Bertrand of Garrigues', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0907', date: '09-07',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Cloud', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Vigil of the Nativity of the Blessed Virgin Mary', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'purple' },
+
+  { id: 'ld-0910', date: '09-10',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Nicholas of Tolentine', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Nicholas of Tolentine, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0911', date: '09-11',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saints Protus and Hyacinth', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saints Protus and Hyacinth, Martyrs', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0918', date: '09-18',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Joseph of Cupertino', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Joseph of Cupertino, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0924', date: '09-24',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Our Lady of Ransom', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Our Lady of Ransom', vetus_ordo_rank: 'Duplex Majus', vetus_ordo_color: 'white' },
 ];

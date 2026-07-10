@@ -17,6 +17,7 @@ Planned features, content gaps, and polish items for Fiat Lux – Quote the Sain
 - [x] Browse sort & filter bugs fixed — scroll-to-results on change, `touch-manipulation` for iOS tap reliability, `lang` dep added
 - [x] Birthday saint in Settings — "By Name / By Birthday" tabs under Patron Saint; birthday stored as `fiat_lux_birthday`
 - [x] Saint images — public-domain Wikimedia Commons images added for ~40 major saints; displayed as a painting banner on the Today card and detail modal, and as circular avatars on Browse rows; image URLs live in `src/api/saintImages.js` and are applied at load time in `entities.js`
+- [x] September saints complete — 9 new saints added (Giles, Martyrs of September 1792, Rosalia, Bertrand of Garrigues, Cloud, Nicholas of Tolentine, Protus and Hyacinth, Joseph of Cupertino, Our Lady of Ransom), each with a matching `ld-MMDD` entry in `liturgicalData.js`; all 30 September dates now have a saint entry
 
 ---
 
