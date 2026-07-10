@@ -165,7 +165,7 @@ Sort pills and virtue filter chips both carry `touch-manipulation` (Tailwind uti
 
 ### Content backlog (`BACKLOG.md`)
 
-Tracked list of known gaps and planned features with completed items marked. Remaining open items include: more saints for January–June, liturgical entries for recently added saint dates, Sunday readings from September 2026 onward, an upcoming-feasts strip on the Today tab, and a patron-category filter on Browse. Check this file before adding new features to avoid duplicating planned work.
+Tracked list of known gaps and planned features with completed items marked. Check this file before adding new features to avoid duplicating planned work — its "Open" section is the authoritative, up-to-date list (it changes frequently as saint coverage is filled in, so don't rely on any snapshot of it described elsewhere, including here).
 
 ### Adding new saints or liturgical days
 
@@ -185,6 +185,8 @@ Full saint entry shape (all fields required; leave unknown values as `''`):
 ```
 
 Optionally add `rite: 'VO'` (or `'NO'`) to restrict an entry to one calendar — entries without a `rite` field show in both.
+
+**`quote`/`quote_es` sourcing** — do not invent words and attribute them to a saint. Use a real documented quote (from their own writings, a primary-source vita/acts, or a well-attested historical anecdote) when you're genuinely confident of it. When no authentic quote survives — common for obscure ancient/legendary martyrs known only through pious legend — use a fitting verse from a Catholic-edition Bible instead, formatted `Verse text. (Book Chapter:Verse)` in `quote` and the Spanish equivalent with a Spanish book name in `quote_es`, matching the citation style already used throughout the file (e.g. `(Psalm 27:1)` / `(Salmo 27:1)`).
 
 ### Adding new Sunday readings
 

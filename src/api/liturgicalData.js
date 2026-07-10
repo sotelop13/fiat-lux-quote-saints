@@ -1248,4 +1248,40 @@ export const LITURGICAL_DAYS = [
   { id: 'ld-0625', date: '06-25',
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Prosper of Aquitaine', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
     vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0710', date: '07-10',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Feria', novus_ordo_rank: 'Feria', novus_ordo_color: 'green',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'The Seven Holy Brothers, Martyrs', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0712', date: '07-12',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saints Louis and Zélie Martin', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint John Gualbert, Abbot', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0717', date: '07-17',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'The Martyrs of Compiègne', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Alexis, Confessor', vetus_ordo_rank: 'Semiduplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0718', date: '07-18',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Camillus de Lellis', novus_ordo_rank: 'Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Camillus de Lellis, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0719', date: '07-19',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Macrina the Younger', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Vincent de Paul, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0720', date: '07-20',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Apollinaris, Bishop and Martyr', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Jerome Emiliani, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0727', date: '07-27',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Pantaleon, Martyr', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Pantaleon, Martyr', vetus_ordo_rank: 'Semiduplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0728', date: '07-28',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Feria', novus_ordo_rank: 'Feria', novus_ordo_color: 'green',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saints Nazarius and Celsus, Martyrs', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0730', date: '07-30',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Peter Chrysologus, Bishop and Doctor of the Church', novus_ordo_rank: 'Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saints Abdon and Sennen, Martyrs', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
 ];

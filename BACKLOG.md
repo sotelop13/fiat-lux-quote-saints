@@ -18,6 +18,7 @@ Planned features, content gaps, and polish items for Fiat Lux – Quote the Sain
 - [x] Birthday saint in Settings — "By Name / By Birthday" tabs under Patron Saint; birthday stored as `fiat_lux_birthday`
 - [x] Saint images — public-domain Wikimedia Commons images added for ~40 major saints; displayed as a painting banner on the Today card and detail modal, and as circular avatars on Browse rows; image URLs live in `src/api/saintImages.js` and are applied at load time in `entities.js`
 - [x] June saints filled — 12 saints added for the remaining June dates (4, 7, 8, 10, 12, 15, 16, 17, 18, 20, 23, 25); June now has full daily coverage in `saintsData.js` with matching `ld-MMDD` entries in `liturgicalData.js`
+- [x] July saints filled — 9 saints added for the remaining July dates (10, 12, 17, 18, 19, 20, 27, 28, 30), including separate NO/VO cards for 19 (Macrina the Younger / Vincent de Paul) and 20 (Apollinaris of Ravenna / Jerome Emiliani); July now has full daily coverage with matching `ld-MMDD` entries
 
 ---
 
