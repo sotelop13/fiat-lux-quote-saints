@@ -573,7 +573,7 @@ export const LITURGICAL_DAYS = [
 
   { id: 'ld-0823', date: '08-23',
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Rose of Lima', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
-    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Rose of Lima, Virgin', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Philip Benizi, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
 
   { id: 'ld-0825', date: '08-25',
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Louis IX', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
@@ -582,6 +582,30 @@ export const LITURGICAL_DAYS = [
   { id: 'ld-0829', date: '08-29',
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Passion of Saint John the Baptist', novus_ordo_rank: 'Memorial', novus_ordo_color: 'red',
     vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Beheading of Saint John the Baptist', vetus_ordo_rank: 'Duplex Majus', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0805', date: '08-05',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Dedication of the Basilica of Saint Mary Major', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Dedication of Saint Mary Major (Our Lady of the Snows)', vetus_ordo_rank: 'Duplex Majus', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0813', date: '08-13',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saints Pontian and Hippolytus', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saints Hippolytus and Cassian, Martyrs', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0817', date: '08-17',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Feria', novus_ordo_rank: 'Feria', novus_ordo_color: 'green',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Hyacinth, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0826', date: '08-26',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Feria', novus_ordo_rank: 'Feria', novus_ordo_color: 'green',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Zephyrinus, Pope and Martyr', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0830', date: '08-30',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Feria', novus_ordo_rank: 'Feria', novus_ordo_color: 'green',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Rose of Lima, Virgin', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0831', date: '08-31',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Feria', novus_ordo_rank: 'Feria', novus_ordo_color: 'green',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Raymond Nonnatus, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
 
   { id: 'ld-0909', date: '09-09',
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Peter Claver', novus_ordo_rank: 'Memorial', novus_ordo_color: 'white',
