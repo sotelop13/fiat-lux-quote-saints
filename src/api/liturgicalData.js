@@ -130,6 +130,83 @@ export const LITURGICAL_DAYS = [
     vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
 
   // ─── FEBRUARY ───────────────────────────────────────────────────────────────
+  // ─── FEBRUARY (additional) ──────────────────────────────────────────────────
+  { id: 'ld-0201', date: '02-01',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Brigid of Kildare', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Saint Brigid, Virgin', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0204', date: '02-04',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Rabanus Maurus', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0207', date: '02-07',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Richard the Pilgrim', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0208', date: '02-08',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Jerome Emiliani', novus_ordo_rank: 'Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0209', date: '02-09',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Apollonia', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Saint Apollonia, Virgin and Martyr', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0212', date: '02-12',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Eulalia of Barcelona', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0213', date: '02-13',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Catherine de’ Ricci', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Saint Catherine de’ Ricci, Virgin', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0215', date: '02-15',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saints Faustinus and Jovita', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0216', date: '02-16',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Onesimus', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Saint Onesimus, Bishop and Martyr', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0217', date: '02-17',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Seven Holy Founders of the Servite Order', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Seven Holy Founders of the Servite Order', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0218', date: '02-18',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Simeon of Jerusalem', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0219', date: '02-19',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Conrad of Piacenza', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Saint Conrad of Piacenza, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0220', date: '02-20',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Sadoth', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Commemoration of Saint Sadoth, Bishop and Martyr', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0221', date: '02-21',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Peter Damian', novus_ordo_rank: 'Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Saint Peter Damian, Bishop and Doctor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0224', date: '02-24',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Ethelbert of Kent', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Saint Matthias, Apostle', vetus_ordo_rank: 'Duplex II Classis', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0225', date: '02-25',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Walburga', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Saint Walburga, Virgin', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0226', date: '02-26',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Porphyry of Gaza', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0227', date: '02-27',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Gabriel Possenti', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0228', date: '02-28',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Oswald of Worcester', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
   { id: 'ld-0202', date: '02-02',
     novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Presentation of the Lord (Candlemas)', novus_ordo_rank: 'Feast', novus_ordo_color: 'white',
     vetus_ordo_season: 'Time after Epiphany', vetus_ordo_feast: 'Purification of the Blessed Virgin Mary', vetus_ordo_rank: 'Duplex II Classis', vetus_ordo_color: 'white' },
