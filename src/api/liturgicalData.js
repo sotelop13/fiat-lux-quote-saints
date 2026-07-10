@@ -382,6 +382,91 @@ export const LITURGICAL_DAYS = [
     novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Catherine of Siena', novus_ordo_rank: 'Memorial', novus_ordo_color: 'white',
     vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Peter Martyr, Dominican', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'red' },
 
+  // ─── APRIL (additional) ─────────────────────────────────────────────────────
+  { id: 'ld-0401', date: '04-01',
+    novus_ordo_season: 'Lent', novus_ordo_feast: 'Saint Hugh of Grenoble', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Lent', vetus_ordo_feast: 'Saint Hugh of Grenoble, Bishop', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0403', date: '04-03',
+    novus_ordo_season: 'Lent', novus_ordo_feast: 'Saint Richard of Chichester', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Lent', vetus_ordo_feast: 'Saint Richard of Chichester, Bishop', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0404', date: '04-04',
+    novus_ordo_season: 'Lent', novus_ordo_feast: 'Saint Isidore of Seville', novus_ordo_rank: 'Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Lent', vetus_ordo_feast: 'Saint Isidore of Seville, Bishop and Doctor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0405', date: '04-05',
+    novus_ordo_season: 'Lent', novus_ordo_feast: 'Saint Vincent Ferrer', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Lent', vetus_ordo_feast: 'Saint Vincent Ferrer, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0406', date: '04-06',
+    novus_ordo_season: 'Lent', novus_ordo_feast: 'Saint Notker of St. Gall', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Lent', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'purple' },
+
+  { id: 'ld-0408', date: '04-08',
+    novus_ordo_season: 'Lent', novus_ordo_feast: 'Saint Julie Billiart', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Lent', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'purple' },
+
+  { id: 'ld-0409', date: '04-09',
+    novus_ordo_season: 'Lent', novus_ordo_feast: 'Saint Waudru of Mons', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Lent', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'purple' },
+
+  { id: 'ld-0410', date: '04-10',
+    novus_ordo_season: 'Lent', novus_ordo_feast: 'Saint Fulbert of Chartres', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Lent', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'purple' },
+
+  { id: 'ld-0412', date: '04-12',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Pope Saint Julius I', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Commemoration of Pope Saint Julius I', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0413', date: '04-13',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Pope Saint Martin I', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Pope Saint Martin I, Martyr', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0414', date: '04-14',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Lidwina of Schiedam', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Lidwina, Virgin', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0415', date: '04-15',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Hunna', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0416', date: '04-16',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Bernadette Soubirous', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Bernadette, Virgin', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0417', date: '04-17',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Stephen Harding', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0418', date: '04-18',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Apollonius the Apologist', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Commemoration of Saint Apollonius, Martyr', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0419', date: '04-19',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Pope Saint Leo IX', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Pope Saint Leo IX, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0420', date: '04-20',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Agnes of Montepulciano', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Agnes of Montepulciano, Virgin', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0421', date: '04-21',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Anselm of Canterbury', novus_ordo_rank: 'Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Anselm, Bishop and Doctor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0422', date: '04-22',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Leonides of Alexandria', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Commemoration of Saint Leonides, Martyr', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0426', date: '04-26',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Pope Saint Cletus', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Pope Saints Cletus and Marcellinus, Martyrs', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0427', date: '04-27',
+    novus_ordo_season: 'Easter', novus_ordo_feast: 'Saint Zita of Lucca', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Easter', vetus_ordo_feast: 'Saint Zita, Virgin', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
   { id: 'ld-0402', date: '04-02',
     novus_ordo_season: 'Lent', novus_ordo_feast: 'Saint Francis of Paola', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
     vetus_ordo_season: 'Lent', vetus_ordo_feast: 'Saint Francis of Paola, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
