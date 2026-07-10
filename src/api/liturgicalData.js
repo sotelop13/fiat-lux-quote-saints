@@ -782,4 +782,53 @@ export const LITURGICAL_DAYS = [
   { id: 'ld-1223', date: '12-23',
     novus_ordo_season: 'Advent', novus_ordo_feast: 'Saint John of Kanty', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
     vetus_ordo_season: 'Advent', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'purple' },
+
+  // ─── JUNE (additional) ──────────────────────────────────────────────────────
+  { id: 'ld-0604', date: '06-04',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Francis Caracciolo', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Francis Caracciolo, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0607', date: '06-07',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Robert of Newminster', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0608', date: '06-08',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Medard', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0610', date: '06-10',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Landry of Paris', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Margaret of Scotland, Widow', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0612', date: '06-12',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint John of Sahagún', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint John of San Facundo, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0615', date: '06-15',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Germaine Cousin', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Commemoration of Saints Vitus, Modestus, and Crescentia, Martyrs', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0616', date: '06-16',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint John Francis Regis', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint John Francis Regis, Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0617', date: '06-17',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Emily de Vialar', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Saint Gregory Barbarigo, Bishop and Confessor', vetus_ordo_rank: 'Duplex', vetus_ordo_color: 'white' },
+
+  { id: 'ld-0618', date: '06-18',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Elizabeth of Schönau', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0620', date: '06-20',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Pope Saint Silverius', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'red',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Commemoration of Saint Silverius, Pope and Martyr', vetus_ordo_rank: 'Simplex', vetus_ordo_color: 'red' },
+
+  { id: 'ld-0623', date: '06-23',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Joseph Cafasso', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
+
+  { id: 'ld-0625', date: '06-25',
+    novus_ordo_season: 'Ordinary Time', novus_ordo_feast: 'Saint Prosper of Aquitaine', novus_ordo_rank: 'Optional Memorial', novus_ordo_color: 'white',
+    vetus_ordo_season: 'Time after Pentecost', vetus_ordo_feast: 'Feria', vetus_ordo_rank: 'Feria', vetus_ordo_color: 'green' },
 ];

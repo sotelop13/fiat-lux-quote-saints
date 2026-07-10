@@ -40,6 +40,7 @@ git push          # triggers Vercel deploy automatically
 - `liturgicalData.js` — static array of fixed-date liturgical days keyed by `date` (MM-DD); each entry carries parallel Novus Ordo (NO) and Vetus Ordo (VO) fields: `*_season`, `*_feast`, `*_rank`, `*_color`.
 - `movableFeasts.js` — computes Easter via the Anonymous Gregorian algorithm (valid 1583–4099) and derives all moveable feasts for the current year (Ash Wednesday through Christ the King). Returns parallel arrays via `getMovableSaints(year)` and `getMovableLiturgicalDays(year)`; both return `[]` on error so the app always loads. Also exports `computeSeason(mmdd, year, rite)` — a pure function that maps any `MM-DD` to its liturgical season string; `Today.jsx` imports it directly rather than going through the entity layer. The `getSundayEntries()` helper generates a liturgical entry for every non-dedicated Sunday: Laetare (4th Sunday of Lent, Easter −21 days) and Gaudete (3rd Sunday of Advent) are both special-cased to `color: 'rose'` inside the Lent/Advent loops — do not change them to purple.
 - `readingsData.js` — Sunday/feast Mass readings keyed by full ISO date (`YYYY-MM-DD`, not MM-DD — the NO lectionary cycle and movable calendar change readings year to year). Each entry has parallel `no` and `vo` blocks with a `readings` array (`label`/`label_es`, `citation`, `text`, `text_es`; section labels live in the data because the rites have different sections; `text_es: ''` falls back to English in the UI). Helpers: `getReadingsForDate(isoDate)`, `getUpcomingReadings(now?)` (today's entry or the nearest within 7 days). Sources: NO from bible.usccb.org (per-date URLs like `MMDDYY.cfm`, `/es/bible/lecturas/` for Spanish), VO from divinumofficium.com (1962 Missal; English/Latin only — Spanish VO propers come from rinconliturgico.blogspot.com, a Latin-Spanish 1962 missal blog with per-Sunday posts). Rendered by `ReadingsModal.jsx` via a banner on the Today tab.
+- `saintImages.js` — static map of saint ID → Wikimedia Commons 480px thumbnail URL (public-domain images for ~45 major saints). Applied as an overlay in `entities.js` at load time so `saintsData.js` stays clean. Movable feast IDs omit the year suffix (key `'s-sacredheart'`, not `'s-sacredheart-2026'`). Saints without an entry get `image_url: ''`. IDs follow the `s-MMDD` pattern; a `-vo` suffix is not a valid ID format and will never match.
 - `entities.js` — loads `saintsData.js` / `liturgicalData.js` via dynamic `import()` (module-level singleton promises, so each data file becomes a separate cacheable chunk), computes moveable feasts for the current year at module load, and exposes thin CRUD wrappers that merge moveable + static arrays per call:
   - `Saint` and `LiturgicalDay` are read-only (`createStaticEntity`)
   - `UserFavorite` is read-write to `localStorage` (`createLocalEntity`)
@@ -58,15 +59,6 @@ Local-only auth stored under `fiat_lux_session` and `fiat_lux_users` in `localSt
 ### App startup sequence
 
 `App.jsx` renders a `SplashScreen` for 1.2 s (framer-motion `AnimatePresence`), then an `Onboarding` flow on first launch (until `fiat_lux_onboarded` is set), then the main app. Onboarding has five swipeable slides: Welcome → Language & Rite → Patron Saint (search saints by name, optional) → Features → Begin Today. It uses TanStack Query (`Saint.list()`) to populate the patron saint search on slide 3; it renders inside `QueryClientProvider` so the query is available. To re-trigger onboarding, clear `fiat_lux_onboarded` from localStorage. `initFontSize()` is called synchronously at the top of `App.jsx` to restore the saved font size before the first render. `OfflineBanner` (fixed top, z-[100], slides in from top) is rendered inside `QueryClientProvider` and is always mounted — it hides itself when online. The whole tree is wrapped in `ErrorBoundary` (`src/components/ErrorBoundary.jsx`).
-
-### Directory layout
-
-- `src/pages/` — full-page views (`Home.jsx` (tab shell), `Today.jsx`, `Calendar.jsx`, `SearchPage.jsx`, `Favorites.jsx`, `SettingsPage.jsx`, auth pages)
-- `src/components/` — shared/reusable UI (`SaintDetailModal.jsx`, `PrayerModal.jsx`, `ReadingsModal.jsx`, `BottomNav.jsx`, `SideNav.jsx`, `Onboarding.jsx`, `LatinCrossIcon.jsx`, `ProtectedRoute.jsx`, `AuthLayout.jsx`, `ScrollToTop.jsx`, etc.) and `ui/` (shadcn primitives)
-- `src/api/` — data layer (see above)
-- `src/lib/` — `AuthContext.jsx`, `LanguageContext.jsx`, `translations.js`, `query-client.js`, `utils.js` (shadcn `cn()`), `app-params.js` (exports `config.appName`), `PageNotFound.jsx` (404 route)
-- `src/hooks/` — all `use-*.jsx` hooks (except `ui/use-toast.jsx` inside shadcn)
-- `src/utils/index.ts` — pure utility functions
 
 ### Routing & navigation (`src/App.jsx`)
 
@@ -138,7 +130,7 @@ Dark/light/system theme is managed by `next-themes` (`useTheme()`). The `Setting
 
 - `@/` alias → `src/`
 - Fonts: **Playfair Display** (`font-playfair`) for headings/quotes, **Inter** (`font-inter`) for UI text
-- Custom color: `text-gold` / `bg-gold` / `border-gold` (defined in CSS variables)
+- Custom color: `text-gold` / `bg-gold` / `border-gold` (hex literal in `tailwind.config.js`, mirrored as a `--gold` CSS variable in `index.css`)
 - Component library: shadcn/ui (Radix UI primitives + Tailwind)
 - `.no-scrollbar` utility class defined in `src/index.css` (hides scrollbars cross-browser on overflow elements)
 - Use `date-fns` for all date operations (already a dependency)
@@ -169,7 +161,7 @@ The patron hero card at the top of the section is always shown when a patron is 
 
 ### `SearchPage.jsx` — Browse
 
-Sort pills and virtue filter chips both carry `touch-manipulation` (Tailwind utility) to eliminate iOS double-tap delay inside `overflow-x-auto` containers. A `useEffect` on `[sortBy, filterVirtue]` scrolls the result-count line into view whenever either changes, so the user always sees the top of the reordered/filtered list. The `filtered` useMemo depends on `[saints, query, sortBy, filterVirtue, lang]` — `lang` is required because feast-date strings and Spanish virtue labels are computed inside the memo.
+Sort pills and virtue filter chips both carry `touch-manipulation` (Tailwind utility) to eliminate iOS double-tap delay inside `overflow-x-auto` containers. Sort change calls `window.scrollTo(0, 0)` (instant, not smooth — smooth scroll animations on iOS consume the next tap as a scroll-cancel gesture, breaking subsequent sort clicks). Virtue filter change only turns the result-count text gold; no scroll fires (the chips are already visible when clicked). The `filtered` useMemo depends on `[saints, query, sortBy, filterVirtue, lang]` — `lang` is required because feast-date strings and Spanish virtue labels are computed inside the memo. Saint avatars in Browse rows use eager loading (not `loading="lazy"`) because 40px elements are below mobile intersection thresholds for lazy loading.
 
 ### Content backlog (`BACKLOG.md`)
 
@@ -186,7 +178,7 @@ Full saint entry shape (all fields required; leave unknown values as `''`):
   birth_year, death_year,      // strings, e.g. '329' or ''
   biography, quote, prayer, reflection,
   patron_of, canonization_year, virtue,
-  image_url,                   // '' until images are added
+  image_url,                   // '' — add to saintImages.js instead of here
   // Spanish variants for all content fields:
   biography_es, quote_es, prayer_es, reflection_es,
 }

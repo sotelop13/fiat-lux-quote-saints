@@ -17,6 +17,7 @@ Planned features, content gaps, and polish items for Fiat Lux – Quote the Sain
 - [x] Browse sort & filter bugs fixed — scroll-to-results on change, `touch-manipulation` for iOS tap reliability, `lang` dep added
 - [x] Birthday saint in Settings — "By Name / By Birthday" tabs under Patron Saint; birthday stored as `fiat_lux_birthday`
 - [x] Saint images — public-domain Wikimedia Commons images added for ~40 major saints; displayed as a painting banner on the Today card and detail modal, and as circular avatars on Browse rows; image URLs live in `src/api/saintImages.js` and are applied at load time in `entities.js`
+- [x] June saints filled — 12 saints added for the remaining June dates (4, 7, 8, 10, 12, 15, 16, 17, 18, 20, 23, 25); June now has full daily coverage in `saintsData.js` with matching `ld-MMDD` entries in `liturgicalData.js`
 
 ---
 
@@ -24,7 +25,7 @@ Planned features, content gaps, and polish items for Fiat Lux – Quote the Sain
 
 ### Content
 
-- [ ] **More saints** — many dates still show "Feria" with no saint entry; priority dates to fill: January, February, most of March–June outside major feasts
+- [ ] **More saints** — many dates still show "Feria" with no saint entry; priority dates to fill: January, February, March–May outside major feasts
 - [ ] **Liturgical entries for new saint dates** — some saints added in July–December lack a matching `ld-MMDD` entry in `liturgicalData.js`; audit and fill gaps
 - [ ] **Sunday readings — September 2026 onward** — `readingsData.js` currently ends at August 30; continue adding NO + VO entries
 
