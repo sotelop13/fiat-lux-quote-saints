@@ -121,6 +121,7 @@ All page containers use `max-w-lg md:max-w-2xl mx-auto` so content widens on tab
 - `capitalize(str)` — uppercases first character
 - `liturgicalColorClass(color)` / `liturgicalColorDotClass(color)` — map liturgical color names (`white`, `red`, `green`, `purple`, `rose`, `black`) to Tailwind text/bg classes
 - `rankPriority(rank, rite)` — numeric sort key; separate maps for `'NO'` (Solemnity=1) and `'VO'` (Duplex I Classis=1) rites
+- `buildFeastICS(saint, description)` — returns an RFC 5545 `.ics` string for a saint's feast day, anchored on its next upcoming occurrence (rolls to next year if this year's date has passed, same logic as `daysUntilFeast`). Fixed-date ids match `/^s-\d{4}(-vo)?$/` (e.g. `s-0601`, `s-0719-vo`) and get `RRULE:FREQ=YEARLY`; movable feasts don't recur, since their MM-DD shifts with Easter and only the current year's date is known to be correct — their ids carry an alphabetic feast name before the year (`s-easter-2026`, `s-ashwed-2026`), which also ends in 4 digits, so detection can't just check for a trailing `-\d{4}`. `SaintDetailModal.jsx` calls it from an "Add to Calendar" header button (shown whenever `saint.feast_date` is set) and triggers the download via the same Blob/`createObjectURL`/anchor-click pattern `SettingsPage.jsx` uses for favorites export.
 
 `src/lib/utils.js` is the shadcn `cn()` helper (separate from the above).
 

@@ -84,3 +84,56 @@ export function daysUntilFeast(feastMMDD: string | undefined | null): number {
   if (feast < today) feast.setFullYear(today.getFullYear() + 1);
   return Math.round((feast.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 }
+
+function pad2(n: number): string {
+  return String(n).padStart(2, '0');
+}
+
+function icsEscape(str: string): string {
+  return str.replace(/\\/g, '\\\\').replace(/,/g, '\\,').replace(/;/g, '\\;').replace(/\n/g, '\\n');
+}
+
+// Builds an RFC 5545 .ics file for a saint's feast day, anchored on its next
+// upcoming occurrence. Fixed-date saints (id like 's-0601') recur yearly via
+// RRULE; movable feasts (id ends in a year, e.g. 's-easter-2026') don't,
+// since their MM-DD shifts with Easter each year and only this year's date
+// is known to be correct.
+export function buildFeastICS(
+  saint: { id: string; name: string; feast_date: string },
+  description: string
+): string {
+  const [mm, dd] = saint.feast_date.split('-').map(Number);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const feast = new Date(today.getFullYear(), mm - 1, dd);
+  feast.setHours(0, 0, 0, 0);
+  if (feast < today) feast.setFullYear(today.getFullYear() + 1);
+
+  const dtStart = `${feast.getFullYear()}${pad2(feast.getMonth() + 1)}${pad2(feast.getDate())}`;
+  const end = new Date(feast);
+  end.setDate(end.getDate() + 1);
+  const dtEnd = `${end.getFullYear()}${pad2(end.getMonth() + 1)}${pad2(end.getDate())}`;
+  const dtStamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  // Fixed-date ids are exactly 's-MMDD' or 's-MMDD-vo'. Movable ids carry an
+  // alphabetic feast name before the year (e.g. 's-easter-2026'), which also
+  // ends in 4 digits — so a naive /-\d{4}$/ check can't tell them apart.
+  const isFixedDate = /^s-\d{4}(-vo)?$/.test(saint.id);
+
+  const lines = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Fiat Lux - Quote the Saints//EN',
+    'CALSCALE:GREGORIAN',
+    'BEGIN:VEVENT',
+    `UID:${saint.id}@fiatlux.app`,
+    `DTSTAMP:${dtStamp}`,
+    `DTSTART;VALUE=DATE:${dtStart}`,
+    `DTEND;VALUE=DATE:${dtEnd}`,
+    ...(isFixedDate ? ['RRULE:FREQ=YEARLY'] : []),
+    `SUMMARY:${icsEscape(saint.name)}`,
+    `DESCRIPTION:${icsEscape(description)}`,
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ];
+  return lines.join('\r\n');
+}

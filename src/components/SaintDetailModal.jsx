@@ -1,8 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Share2, ChevronDown, ChevronUp } from "lucide-react";
+import { X, Share2, CalendarPlus, ChevronDown, ChevronUp } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useLanguage } from '@/lib/LanguageContext';
 import { T, VIRTUES_ES } from '@/lib/translations';
+import { buildFeastICS } from '@/utils';
 
 export default function SaintDetailModal({ saint, liturgical, open, onClose, context = 'calendar', lang: langProp }) {
   const [ctxLang] = useLanguage();
@@ -26,6 +27,17 @@ export default function SaintDetailModal({ saint, liturgical, open, onClose, con
     } else {
       await navigator.clipboard.writeText(text);
     }
+  };
+
+  const handleAddToCalendar = () => {
+    const ics = buildFeastICS(saint, t.feast_day);
+    const blob = new Blob([ics], { type: 'text/calendar' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${saint.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}.ics`;
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   const defaultPrayer = lang === 'es'
@@ -86,6 +98,15 @@ export default function SaintDetailModal({ saint, liturgical, open, onClose, con
                 )}
               </div>
               <div className="flex items-center gap-1 mt-1">
+                {saint.feast_date && (
+                  <button
+                    onClick={handleAddToCalendar}
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-secondary text-muted-foreground hover:bg-muted transition-colors"
+                    aria-label="Add to Calendar"
+                  >
+                    <CalendarPlus className="w-4 h-4" />
+                  </button>
+                )}
                 <button
                   onClick={handleShare}
                   className="w-8 h-8 flex items-center justify-center rounded-full bg-secondary text-muted-foreground hover:bg-muted transition-colors"
