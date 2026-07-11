@@ -19,6 +19,8 @@ Planned features, content gaps, and polish items for Fiat Lux – Quote the Sain
 - [x] Saint images — public-domain Wikimedia Commons images added for ~40 major saints; displayed as a painting banner on the Today card and detail modal, and as circular avatars on Browse rows; image URLs live in `src/api/saintImages.js` and are applied at load time in `entities.js`
 - [x] June saints filled — 12 saints added for the remaining June dates (4, 7, 8, 10, 12, 15, 16, 17, 18, 20, 23, 25); June now has full daily coverage in `saintsData.js` with matching `ld-MMDD` entries in `liturgicalData.js`
 - [x] July saints filled — 9 saints added for the remaining July dates (10, 12, 17, 18, 19, 20, 27, 28, 30), including separate NO/VO cards for 19 (Macrina the Younger / Vincent de Paul) and 20 (Apollinaris of Ravenna / Jerome Emiliani); July now has full daily coverage with matching `ld-MMDD` entries
+- [x] Upcoming feasts on Today tab — `upcomingFeasts` strip shows the next 3 non-Feria feast days (excluding today and an already-shown patron), clickable into the saint detail modal
+- [x] Liturgical entries for new saint dates — audited; every `saintsData.js` entry now has a matching `ld-MMDD` entry in `liturgicalData.js`, no gaps remain
 
 ---
 
@@ -26,13 +28,11 @@ Planned features, content gaps, and polish items for Fiat Lux – Quote the Sain
 
 ### Content
 
-- [ ] **More saints** — many dates still show "Feria" with no saint entry; priority dates to fill: January, February, March–May outside major feasts
-- [ ] **Liturgical entries for new saint dates** — some saints added in July–December lack a matching `ld-MMDD` entry in `liturgicalData.js`; audit and fill gaps
+- [ ] **More saints** — January–July now have full daily coverage; August–December still show "Feria" on many dates (Aug 8, Sep 9, Oct 13, Nov 8, Dec 11 missing as of 2026-07-10)
 - [ ] **Sunday readings — September 2026 onward** — `readingsData.js` currently ends at August 30; continue adding NO + VO entries
 
 ### Features
 
-- [ ] **Upcoming feasts on Today tab** — a small strip showing the next 2–3 feast days coming up; data is already available via `getSaintsForYear`
 - [ ] **Patron category filter on Browse** — filter by patron category (e.g. "students", "sick") in addition to virtue; requires adding a `patron_category` field or parsing `patron_of`
 
 ### Polish
