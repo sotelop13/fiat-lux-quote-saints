@@ -11,8 +11,9 @@ import { Saint } from '@/api/entities';
 import { formatFeastDate, daysUntilFeast } from '@/utils';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { LogOut, User, Sun, Moon, Monitor, Languages, Star, X, Check, Download, Bell } from 'lucide-react';
+import { LogOut, User, Sun, Moon, Monitor, Languages, Star, X, Check, Download, Bell, Flame } from 'lucide-react';
 import { useNotifications, notifSupported } from '@/hooks/use-notifications';
+import { useStreak } from '@/hooks/use-streak';
 
 
 
@@ -47,6 +48,7 @@ export default function SettingsPage() {
   const [nameDayName, setNameDayName] = useNameDay();
   const [patronId, setPatronId] = usePatronSaint();
   const { permission, enabled, requestAndEnable, disable } = useNotifications();
+  const { best: bestStreak } = useStreak();
   const t = T[lang];
 
   const [findMode, setFindMode] = useState('name');
@@ -110,6 +112,15 @@ export default function SettingsPage() {
           )}
           <p className="font-inter text-sm text-muted-foreground truncate">{user?.email ?? 'Guest'}</p>
         </div>
+        {bestStreak >= 2 && (
+          <div className="flex items-center gap-1.5 shrink-0 pl-3 ml-auto border-l border-border">
+            <Flame className="w-4 h-4 text-gold fill-gold/20" />
+            <div className="leading-tight">
+              <p className="font-inter text-sm font-semibold text-foreground">{tx(t.best_streak_days, { n: bestStreak })}</p>
+              <p className="font-inter text-[10px] text-muted-foreground">{t.best_streak}</p>
+            </div>
+          </div>
+        )}
       </div>
 
       <Separator className="my-4" />

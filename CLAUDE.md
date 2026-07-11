@@ -90,6 +90,7 @@ All page containers use `max-w-lg md:max-w-2xl mx-auto` so content widens on tab
 - `use-notifications.jsx` — `useNotifications()` returns `{ permission, enabled, requestAndEnable, disable, markNotified, isAlreadyNotifiedToday }`. Manages Web Notifications API permission state and the enabled toggle. Also exports `notifSupported()`. `Today.jsx` calls `markNotified()` + `new Notification(…)` on first open each day; `SettingsPage.jsx` exposes the toggle UI.
 - `use-online.jsx` — `useIsOnline()` tracks `navigator.onLine` via `online`/`offline` window events. Used by `OfflineBanner.jsx`.
 - `use-today.jsx` — `useToday()` returns today's `MM-DD` string and re-derives it on window focus, visibility change, and a 1-minute heartbeat — handles the PWA resume-from-memory case where React never remounts across midnight.
+- `use-streak.jsx` — `useStreak()` returns `{ streak, best }`. On mount, compares today's date (`yyyy-MM-dd`) to `fiat_lux_streak_last_date`: a 1-day gap increments the streak, any other gap resets it to 1, same-day is a no-op — idempotent, so it's safe to call from multiple components (`Today.jsx` shows `streak` in the header once `>= 2`; `SettingsPage.jsx` shows `best` as a personal-record stat). Day-gap math uses date-fns `parseISO`, not `new Date(str)`, since bare `yyyy-MM-dd` parses as UTC in native `Date` and can off-by-one near midnight in negative-UTC timezones.
 
 ### localStorage keys (full inventory)
 
@@ -108,6 +109,9 @@ All page containers use `max-w-lg md:max-w-2xl mx-auto` so content widens on tab
 | `fiat_lux_onboarded` | Set to `'true'` after first-launch onboarding |
 | `fiat_lux_notifications` | `'true'` when user has enabled daily saint notifications |
 | `fiat_lux_last_notification` | `Date.toDateString()` of the last shown notification (deduplicates per day) |
+| `fiat_lux_streak_count` | Current consecutive-day streak of opening the Today tab |
+| `fiat_lux_streak_last_date` | `yyyy-MM-dd` (date-fns `format`) of the last day the streak was counted |
+| `fiat_lux_streak_best` | All-time longest streak, shown in Settings |
 
 ### Utilities (`src/utils/index.ts`)
 

@@ -21,6 +21,9 @@ export const T = {
     no_feast_today:     'No particular feast today.',
     ordinary_time_vo:   'Ordinary time in the Extraordinary Form.',
     ordinary_time_no:   'Ordinary time in the Ordinary Form.',
+    streak_days:        '{n}-day streak',
+    best_streak:        'Best streak',
+    best_streak_days:   '{n} days',
     // ReadingsModal / Sunday readings banner & Gospel card
     sunday_gospel:    'Sunday Gospel',
     mass_readings:    'Mass Readings',
@@ -219,6 +222,9 @@ export const T = {
     no_feast_today:     'Hoy no hay fiesta particular.',
     ordinary_time_vo:   'Tiempo ordinario en la Forma Extraordinaria.',
     ordinary_time_no:   'Tiempo ordinario en la Forma Ordinaria.',
+    streak_days:        'Racha de {n} días',
+    best_streak:        'Mejor racha',
+    best_streak_days:   '{n} días',
     // ReadingsModal / Sunday readings banner & Gospel card
     sunday_gospel:    'Evangelio del domingo',
     mass_readings:    'Lecturas de la Misa',

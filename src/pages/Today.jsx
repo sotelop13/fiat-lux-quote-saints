@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
-import { Heart, BookOpen, BookMarked, Loader2, Sparkles, Share2, CalendarDays, Star, ChevronRight } from 'lucide-react';
+import { Heart, BookOpen, BookMarked, Loader2, Sparkles, Share2, CalendarDays, Star, ChevronRight, Flame } from 'lucide-react';
 import { Saint, LiturgicalDay, UserFavorite } from '@/api/entities';
 import { getUpcomingReadings } from '@/api/readingsData';
 import { todayMMDD, formatFeastDate, formatFeastDateParts, liturgicalColorClass, liturgicalColorDotClass, rankPriority, daysUntilFeast } from '@/utils';
@@ -19,6 +19,7 @@ import { usePatronSaint } from '@/hooks/use-patron-saint';
 import { useLanguage } from '@/lib/LanguageContext';
 import { T, tx, VIRTUES_ES } from '@/lib/translations';
 import { useNotifications, notifSupported } from '@/hooks/use-notifications';
+import { useStreak } from '@/hooks/use-streak';
 
 function RiteToggle({ rite, onChange }) {
   return (
@@ -91,6 +92,7 @@ export default function Today() {
   const [lang] = useLanguage();
   const t = T[lang];
   const { permission, enabled, isAlreadyNotifiedToday, markNotified } = useNotifications();
+  const { streak } = useStreak();
 
   const [saintOpen, setSaintOpen] = useState(false);
   const [prayerOpen, setPrayerOpen] = useState(false);
@@ -351,6 +353,14 @@ export default function Today() {
           <h1 className="font-playfair text-3xl font-bold text-foreground mt-0.5">
             {format(new Date(), 'MMMM d, yyyy')}
           </h1>
+          {streak >= 2 && (
+            <div className="flex items-center gap-1 mt-1.5">
+              <Flame className="w-3.5 h-3.5 text-gold fill-gold/20" />
+              <span className="font-inter text-xs font-semibold text-gold">
+                {tx(t.streak_days, { n: streak })}
+              </span>
+            </div>
+          )}
         </div>
         <RiteToggle rite={rite} onChange={setRite} />
       </div>
