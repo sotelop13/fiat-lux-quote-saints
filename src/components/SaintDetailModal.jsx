@@ -75,7 +75,8 @@ export default function SaintDetailModal({ saint, liturgical, open, onClose, con
                 <img
                   src={saint.image_url}
                   alt=""
-                  className={`w-full h-full object-cover grayscale ${saint.image_position === 'center' ? '' : 'object-top'}`}
+                  className="w-full h-full object-cover grayscale"
+                  style={{ objectPosition: saint.image_position }}
                   loading="lazy"
                   onError={(e) => { e.currentTarget.parentElement.style.display = 'none'; }}
                 />

@@ -40,9 +40,9 @@ export const SAINT_IMAGES = {
   's-0731':    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Ignatius_Loyola.jpg/500px-Ignatius_Loyola.jpg',
 
   // August
-  's-0804':    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/S%C3%A3o_Jo%C3%A3o_Maria_Vianney.png/480px-S%C3%A3o_Jo%C3%A3o_Maria_Vianney.png',
-  's-0804-vo': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SaintDominic.jpg/480px-SaintDominic.jpg',
-  's-0808':    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SaintDominic.jpg/480px-SaintDominic.jpg',
+  's-0804':    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/St._John_Vianney_%28896456693%29.jpg/500px-St._John_Vianney_%28896456693%29.jpg',
+  's-0804-vo': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SaintDominic.jpg/500px-SaintDominic.jpg',
+  's-0808':    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SaintDominic.jpg/500px-SaintDominic.jpg',
   's-0811':    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Simone_Martini_047.jpg/480px-Simone_Martini_047.jpg',
   's-0814':    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Fr.Maximilian_Kolbe_in_1936.jpg/480px-Fr.Maximilian_Kolbe_in_1936.jpg',
   's-0815':    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Tizian_041.jpg/480px-Tizian_041.jpg',
@@ -72,13 +72,17 @@ export const SAINT_IMAGES = {
   's-divinemercysunday': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg/480px-ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg',
 };
 
-// Crop anchor for the Today card / detail modal hero banner (both use
-// object-cover at a short, wide aspect ratio). Most source paintings here
-// are full or half-length portraits with the face in the upper portion, so
-// 'top' is the default. A handful are tight headshots where the face
-// already fills the frame — anchoring those to 'top' crops off the eyes and
-// mouth instead of showing more of the composition, so list them here to
-// fall back to the (centered) default crop instead.
-export const SAINT_IMAGE_CENTER_CROP = new Set([
-  's-0731', // Ignatius Loyola — tight headshot portrait
-]);
+// Vertical crop anchor for the Today card / detail modal hero banner (both
+// use object-cover at a short, wide aspect ratio: ~176px tall at full card
+// width). Most source paintings here are full or half-length portraits with
+// the face in the upper portion, so saints not listed here default to a
+// top-anchored crop (CSS 'center top'). Override here — with 'center' or a
+// vertical percentage — when the default top crop cuts off the face; each
+// value was found empirically by test-cropping the source image, since
+// face position varies a lot by composition (headshot vs. full-body scene).
+export const SAINT_IMAGE_POSITION = {
+  's-0731':    'center', // Ignatius Loyola — tight headshot, face fills the frame
+  's-0804':    '8%',     // John Vianney — face sits lower in a tall stained-glass panel
+  's-0804-vo': '8%',     // Saint Dominic — full-body scene, face in the upper-middle arch
+  's-0808':    '8%',     // shares Saint Dominic's image with s-0804-vo
+};

@@ -1,7 +1,14 @@
 import { getMovableSaints, getMovableLiturgicalDays, computeSeason } from './movableFeasts';
-import { SAINT_IMAGES, SAINT_IMAGE_CENTER_CROP } from './saintImages';
+import { SAINT_IMAGES, SAINT_IMAGE_POSITION } from './saintImages';
 
-const imagePosition = (id) => (SAINT_IMAGE_CENTER_CROP.has(id) ? 'center' : 'top');
+// CSS object-position value for the hero image crop. Unlisted saints default
+// to top-anchored; SAINT_IMAGE_POSITION overrides with 'center' or a
+// vertical percentage for images where that default cuts off the face.
+const imagePosition = (id) => {
+  const override = SAINT_IMAGE_POSITION[id];
+  if (!override) return 'center top';
+  return override === 'center' ? 'center' : `center ${override}`;
+};
 
 const _year = new Date().getFullYear();
 // Movable saint IDs include the year (e.g. 's-sacredheart-2026'); strip it for the image lookup.
