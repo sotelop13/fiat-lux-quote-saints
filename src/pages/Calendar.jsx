@@ -216,6 +216,15 @@ export default function Calendar() {
     []
   );
 
+  // Bounds of the readings data itself, so the "no readings yet" note only
+  // appears for Sundays inside the covered range — not for every Sunday
+  // once the data runs out.
+  const readingsRange = useMemo(() => {
+    if (SUNDAY_READINGS.length === 0) return null;
+    const dates = SUNDAY_READINGS.map(r => r.date);
+    return { min: dates.reduce((a, b) => (a < b ? a : b)), max: dates.reduce((a, b) => (a > b ? a : b)) };
+  }, []);
+
   const daysInMonth = getDaysInMonth(new Date(year, month));
   const firstDayOfWeek = getDay(startOfMonth(new Date(year, month)));
 
@@ -468,6 +477,9 @@ export default function Calendar() {
               const isPastDay = isCurrentMonthAndYear && day < today.getDate();
               const isoDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
               const dayReadings = SUNDAY_READINGS.find(r => r.date === isoDate) ?? null;
+              const isSunday = getDay(new Date(year, month, day)) === 0;
+              const showNoReadingsNote = isSunday && !dayReadings && readingsRange
+                && isoDate >= readingsRange.min && isoDate <= readingsRange.max;
               return (
               <div key={key} ref={el => { dayListRefs.current[key] = el; }} className={`flex flex-col gap-1.5 ${isPastDay ? 'opacity-50' : ''}`}>
                 {dayReadings && (() => {
@@ -500,6 +512,12 @@ export default function Calendar() {
                     </button>
                   );
                 })()}
+                {showNoReadingsNote && (
+                  <div className="flex items-center gap-2 px-4 py-1.5 text-muted-foreground/60">
+                    <BookOpen className="w-3 h-3 shrink-0" />
+                    <span className="font-inter text-xs italic">{t.no_readings_yet}</span>
+                  </div>
+                )}
                 {entries.map(({ info, saint, liturgical, isPrimary }, idx) => {
                   const isSaved = saint && savedNames.has(saint.name);
                   const isDayToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();

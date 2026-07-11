@@ -36,6 +36,7 @@ export const T = {
     prayer_before_mass:  'Prayer before Mass',
     prayer_after_mass:   'Prayer after Mass',
     vo_no_spanish:       'Spanish text not available for the Extraordinary Form — showing English.',
+    no_readings_yet:     'Readings not yet added for this Sunday',
 
     // SaintDetailModal
     feast_day:  'Feast Day',
@@ -239,6 +240,7 @@ export const T = {
     prayer_before_mass:  'Oración antes de la Misa',
     prayer_after_mass:   'Oración después de la Misa',
     vo_no_spanish:       'Texto en español no disponible para la Forma Extraordinaria — mostrando inglés.',
+    no_readings_yet:     'Lecturas aún no añadidas para este domingo',
 
     // SaintDetailModal
     feast_day:  'Día de Fiesta',

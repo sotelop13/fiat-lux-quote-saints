@@ -21,6 +21,8 @@ Planned features, content gaps, and polish items for Fiat Lux – Quote the Sain
 - [x] July saints filled — 9 saints added for the remaining July dates (10, 12, 17, 18, 19, 20, 27, 28, 30), including separate NO/VO cards for 19 (Macrina the Younger / Vincent de Paul) and 20 (Apollinaris of Ravenna / Jerome Emiliani); July now has full daily coverage with matching `ld-MMDD` entries
 - [x] Upcoming feasts on Today tab — `upcomingFeasts` strip shows the next 3 non-Feria feast days (excluding today and an already-shown patron), clickable into the saint detail modal
 - [x] Liturgical entries for new saint dates — audited; every `saintsData.js` entry now has a matching `ld-MMDD` entry in `liturgicalData.js`, no gaps remain
+- [x] Rose color in the legend — audited `Calendar.jsx`; the color legend already included rose alongside white/red/green/purple/black (this backlog entry was stale)
+- [x] "No readings" state — Sundays inside the `SUNDAY_READINGS` coverage range that lack an entry now show a subtle "Readings not yet added for this Sunday" note in the feast list instead of silently omitting the readings card
 
 ---
 
@@ -34,8 +36,3 @@ Planned features, content gaps, and polish items for Fiat Lux – Quote the Sain
 ### Features
 
 - [ ] **Patron category filter on Browse** — filter by patron category (e.g. "students", "sick") in addition to virtue; requires adding a `patron_category` field or parsing `patron_of`
-
-### Polish
-
-- [ ] **Rose color in the legend** — the liturgical color legend (if displayed) should include rose alongside purple, green, white, red, and black
-- [ ] **"No readings" state** — Calendar readings card could note when no readings entry exists for a Sunday rather than silently omitting the `BookOpen` icon
