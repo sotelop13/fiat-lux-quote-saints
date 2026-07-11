@@ -30,7 +30,8 @@ export default function SaintDetailModal({ saint, liturgical, open, onClose, con
   };
 
   const handleAddToCalendar = () => {
-    const ics = buildFeastICS(saint, t.feast_day);
+    const description = quote ? `${t.feast_day}\n\n"${quote}"` : t.feast_day;
+    const ics = buildFeastICS(saint, description);
     const blob = new Blob([ics], { type: 'text/calendar' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
