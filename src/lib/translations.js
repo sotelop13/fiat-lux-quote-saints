@@ -24,6 +24,8 @@ export const T = {
     streak_days:        '{n}-day streak',
     best_streak:        'Best streak',
     best_streak_days:   '{n} days',
+    streak_milestone_title: '{n}-Day Streak!',
+    streak_milestone_desc:  'Your daily devotion is bearing fruit. Keep going!',
     // ReadingsModal / Sunday readings banner & Gospel card
     sunday_gospel:    'Sunday Gospel',
     mass_readings:    'Mass Readings',
@@ -225,6 +227,8 @@ export const T = {
     streak_days:        'Racha de {n} días',
     best_streak:        'Mejor racha',
     best_streak_days:   '{n} días',
+    streak_milestone_title: '¡Racha de {n} Días!',
+    streak_milestone_desc:  'Tu devoción diaria está dando fruto. ¡Sigue así!',
     // ReadingsModal / Sunday readings banner & Gospel card
     sunday_gospel:    'Evangelio del domingo',
     mass_readings:    'Lecturas de la Misa',

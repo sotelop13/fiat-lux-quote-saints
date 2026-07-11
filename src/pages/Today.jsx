@@ -92,7 +92,7 @@ export default function Today() {
   const [lang] = useLanguage();
   const t = T[lang];
   const { permission, enabled, isAlreadyNotifiedToday, markNotified } = useNotifications();
-  const { streak } = useStreak();
+  const { streak, milestone } = useStreak();
 
   const [saintOpen, setSaintOpen] = useState(false);
   const [prayerOpen, setPrayerOpen] = useState(false);
@@ -158,6 +158,14 @@ export default function Today() {
   // saint.id is the stable identity; re-run if permission/enabled/lang change
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [saint?.id, permission, enabled, lang]);
+
+  // Celebrate streak milestones (7/30/100/365 days) with a one-off toast
+  useEffect(() => {
+    if (!milestone) return;
+    toast({ title: tx(t.streak_milestone_title, { n: milestone }), description: t.streak_milestone_desc });
+  // milestone is only ever set once per mount by useStreak; toast/t are stable enough not to re-trigger this
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [milestone]);
 
   const { data: allSaintsRaw = [] } = useQuery({
     queryKey: ['saints-all'],

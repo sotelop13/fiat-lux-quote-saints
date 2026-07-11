@@ -5,6 +5,8 @@ const COUNT_KEY = 'fiat_lux_streak_count';
 const LAST_KEY  = 'fiat_lux_streak_last_date';
 const BEST_KEY  = 'fiat_lux_streak_best';
 
+const MILESTONES = [7, 30, 100, 365];
+
 // Tracks consecutive calendar days the user has opened the Today tab.
 // Call once from Today.jsx on mount. Uses parseISO (not `new Date(str)`,
 // which parses bare yyyy-MM-dd as UTC) so the day-gap math stays correct
@@ -12,6 +14,10 @@ const BEST_KEY  = 'fiat_lux_streak_best';
 export function useStreak() {
   const [streak, setStreak] = useState(() => Number(localStorage.getItem(COUNT_KEY)) || 0);
   const [best, setBest] = useState(() => Number(localStorage.getItem(BEST_KEY)) || 0);
+  // Only set when this mount is the one that pushed the streak onto a
+  // milestone value — null on every other mount/day, including repeat
+  // mounts later the same day (the early return below skips recompute).
+  const [milestone, setMilestone] = useState(null);
 
   useEffect(() => {
     const todayStr = format(new Date(), 'yyyy-MM-dd');
@@ -30,10 +36,12 @@ export function useStreak() {
       localStorage.setItem(BEST_KEY, String(next));
       setBest(next);
     }
+
+    if (MILESTONES.includes(next)) setMilestone(next);
   // Runs once per mount to evaluate the day gap; streak/best are read via
   // localStorage inside, not stale closures, since they only ever update once here.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { streak, best };
+  return { streak, best, milestone };
 }
