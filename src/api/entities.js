@@ -1,18 +1,20 @@
 import { getMovableSaints, getMovableLiturgicalDays, computeSeason } from './movableFeasts';
-import { SAINT_IMAGES } from './saintImages';
+import { SAINT_IMAGES, SAINT_IMAGE_CENTER_CROP } from './saintImages';
+
+const imagePosition = (id) => (SAINT_IMAGE_CENTER_CROP.has(id) ? 'center' : 'top');
 
 const _year = new Date().getFullYear();
 // Movable saint IDs include the year (e.g. 's-sacredheart-2026'); strip it for the image lookup.
-const _movableSaints = getMovableSaints(_year).map(s => ({
-  ...s,
-  image_url: SAINT_IMAGES[s.id.replace(/-\d{4}$/, '')] || s.image_url || '',
-}));
+const _movableSaints = getMovableSaints(_year).map(s => {
+  const baseId = s.id.replace(/-\d{4}$/, '');
+  return { ...s, image_url: SAINT_IMAGES[baseId] || s.image_url || '', image_position: imagePosition(baseId) };
+});
 const _movableLiturgical = getMovableLiturgicalDays(_year);
 
 // Dynamic imports so saintsData / liturgicalData are separate cacheable chunks.
 // Both promises are module-level singletons — the import only fires once.
 const saintsPromise = import('./saintsData').then(m =>
-  m.SAINTS.map(s => ({ ...s, image_url: SAINT_IMAGES[s.id] || s.image_url }))
+  m.SAINTS.map(s => ({ ...s, image_url: SAINT_IMAGES[s.id] || s.image_url, image_position: imagePosition(s.id) }))
 );
 const liturgicalPromise = import('./liturgicalData').then(m => m.LITURGICAL_DAYS);
 
@@ -73,10 +75,10 @@ export const UserFavorite = createLocalEntity('fiat_lux_favorites');
 
 export async function getSaintsForYear(year, rite = null) {
   const SAINTS = await saintsPromise;
-  const movable = getMovableSaints(year).map(s => ({
-    ...s,
-    image_url: SAINT_IMAGES[s.id.replace(/-\d{4}$/, '')] || s.image_url || '',
-  }));
+  const movable = getMovableSaints(year).map(s => {
+    const baseId = s.id.replace(/-\d{4}$/, '');
+    return { ...s, image_url: SAINT_IMAGES[baseId] || s.image_url || '', image_position: imagePosition(baseId) };
+  });
   const all = [...movable, ...SAINTS];
   if (!rite) return all;
   return all.filter(s => !s.rite || s.rite === rite);

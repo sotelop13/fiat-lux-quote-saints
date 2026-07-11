@@ -36,8 +36,8 @@ export const SAINT_IMAGES = {
   's-0703':    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Thomas_the_Apostle._Detail_of_the_mosaic_in_the_Basilica_of_San_Vitale._Ravena%2C_Italy.jpg/480px-Thomas_the_Apostle._Detail_of_the_mosaic_in_the_Basilica_of_San_Vitale._Ravena%2C_Italy.jpg',
   's-0706':    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Maria_Goretti.jpg/480px-Maria_Goretti.jpg',
   's-0711':    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg/500px-Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg',
-  's-0722':    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/TINTORETTO_-_Magdalena_penitente_%28Musei_Capitolini%2C_Roma%2C_1598-1602%29_-_copia.jpg/500px-TINTORETTO_-_Magdalena_penitente_%28Musei_Capitolini%2C_Roma%2C_1598-1602%29_-_copia.jpg',
-  's-0731':    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Ignatius_Loyola.jpg/480px-Ignatius_Loyola.jpg',
+  's-0722':    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Bernardino_Campi_-_Mary_Magdalene_-_Google_Art_Project.jpg/500px-Bernardino_Campi_-_Mary_Magdalene_-_Google_Art_Project.jpg',
+  's-0731':    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Ignatius_Loyola.jpg/500px-Ignatius_Loyola.jpg',
 
   // August
   's-0804':    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/S%C3%A3o_Jo%C3%A3o_Maria_Vianney.png/480px-S%C3%A3o_Jo%C3%A3o_Maria_Vianney.png',
@@ -71,3 +71,14 @@ export const SAINT_IMAGES = {
   's-sacredheart':       'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/SacredHeartBatoni.jpg/480px-SacredHeartBatoni.jpg',
   's-divinemercysunday': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg/480px-ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg',
 };
+
+// Crop anchor for the Today card / detail modal hero banner (both use
+// object-cover at a short, wide aspect ratio). Most source paintings here
+// are full or half-length portraits with the face in the upper portion, so
+// 'top' is the default. A handful are tight headshots where the face
+// already fills the frame — anchoring those to 'top' crops off the eyes and
+// mouth instead of showing more of the composition, so list them here to
+// fall back to the (centered) default crop instead.
+export const SAINT_IMAGE_CENTER_CROP = new Set([
+  's-0731', // Ignatius Loyola — tight headshot portrait
+]);
