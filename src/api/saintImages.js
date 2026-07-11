@@ -36,7 +36,7 @@ export const SAINT_IMAGES = {
   's-0703':    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Thomas_the_Apostle._Detail_of_the_mosaic_in_the_Basilica_of_San_Vitale._Ravena%2C_Italy.jpg/480px-Thomas_the_Apostle._Detail_of_the_mosaic_in_the_Basilica_of_San_Vitale._Ravena%2C_Italy.jpg',
   's-0706':    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Maria_Goretti.jpg/480px-Maria_Goretti.jpg',
   's-0711':    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg/500px-Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg',
-  's-0722':    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/TINTORETTO_-_Magdalena_penitente_%28Musei_Capitolini%2C_Roma%2C_1598-1602%29_-_copia.jpg/480px-TINTORETTO_-_Magdalena_penitente_%28Musei_Capitolini%2C_Roma%2C_1598-1602%29_-_copia.jpg',
+  's-0722':    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/TINTORETTO_-_Magdalena_penitente_%28Musei_Capitolini%2C_Roma%2C_1598-1602%29_-_copia.jpg/500px-TINTORETTO_-_Magdalena_penitente_%28Musei_Capitolini%2C_Roma%2C_1598-1602%29_-_copia.jpg',
   's-0731':    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Ignatius_Loyola.jpg/480px-Ignatius_Loyola.jpg',
 
   // August
