@@ -75,7 +75,7 @@ export default function SaintDetailModal({ saint, liturgical, open, onClose, con
                 <img
                   src={saint.image_url}
                   alt=""
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top grayscale"
                   loading="lazy"
                   onError={(e) => { e.currentTarget.parentElement.style.display = 'none'; }}
                 />
