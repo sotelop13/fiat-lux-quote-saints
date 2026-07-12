@@ -194,7 +194,7 @@ Full saint entry shape (all fields required; leave unknown values as `''`):
 }
 ```
 
-Optionally add `rite: 'VO'` (or `'NO'`) to restrict an entry to one calendar — entries without a `rite` field show in both.
+Optionally add `rite: 'VO'` (or `'NO'`) to restrict an entry to one calendar — entries without a `rite` field show in both. **When a saint has two entries for two different feast dates** (e.g. a reformed Novus Ordo date and a separate traditional Vetus Ordo date for the same person), both entries need an explicit `rite` tag — if one is tagged and the sibling is left untagged, the untagged one shows under *both* calendars and the saint appears twice in Browse/Search under whichever rite carries the tagged entry. Cross-check the correct rite for each date against the matching `ld-MMDD` entry's `novus_ordo_feast`/`vetus_ordo_feast` fields in `liturgicalData.js` rather than guessing.
 
 **`quote`/`quote_es` sourcing** — do not invent words and attribute them to a saint. Use a real documented quote (from their own writings, a primary-source vita/acts, or a well-attested historical anecdote) when you're genuinely confident of it. When no authentic quote survives — common for obscure ancient/legendary martyrs known only through pious legend — use a fitting verse from a Catholic-edition Bible instead, formatted `Verse text. (Book Chapter:Verse)` in `quote` and the Spanish equivalent with a Spanish book name in `quote_es`, matching the citation style already used throughout the file (e.g. `(Psalm 27:1)` / `(Salmo 27:1)`).
 
