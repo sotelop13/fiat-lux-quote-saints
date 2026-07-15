@@ -47,9 +47,9 @@ export const SAINT_IMAGES = {
   's-0808':    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SaintDominic.jpg/500px-SaintDominic.jpg',
   's-0811':    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Simone_Martini_047.jpg/500px-Simone_Martini_047.jpg',
   's-0814':    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Fr.Maximilian_Kolbe_in_1936.jpg/500px-Fr.Maximilian_Kolbe_in_1936.jpg',
-  's-0815':    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Tizian_041.jpg/480px-Tizian_041.jpg',
-  's-0820':    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/San_Bernardo%2C_de_Juan_Correa_de_Vivar_%28Museo_del_Prado%29.jpg/480px-San_Bernardo%2C_de_Juan_Correa_de_Vivar_%28Museo_del_Prado%29.jpg',
-  's-0828':    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Saint_Augustine_by_Philippe_de_Champaigne.jpg/480px-Saint_Augustine_by_Philippe_de_Champaigne.jpg',
+  's-0815':    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Tizian_041.jpg/500px-Tizian_041.jpg',
+  's-0820':    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/San_Bernardo%2C_de_Juan_Correa_de_Vivar_%28Museo_del_Prado%29.jpg/500px-San_Bernardo%2C_de_Juan_Correa_de_Vivar_%28Museo_del_Prado%29.jpg',
+  's-0828':    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Saint_Augustine_by_Philippe_de_Champaigne.jpg/500px-Saint_Augustine_by_Philippe_de_Champaigne.jpg',
 
   // September
   's-0905':    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Mother_Teresa_1.jpg/480px-Mother_Teresa_1.jpg',
@@ -89,4 +89,6 @@ export const SAINT_IMAGES = {
 export const SAINT_IMAGE_POSITION = {
   's-0731':    'center', // Ignatius Loyola — tight headshot, face fills the frame
   's-0715':    '14%',    // Bonaventure — full-body writing scene, face in upper third
+  's-0815':    '20%',    // Assumption of Mary — tall altarpiece, her face sits below God the Father
+  's-0820':    '5%',     // Bernard of Clairvaux — very tall full-length portrait, face near the top
 };
