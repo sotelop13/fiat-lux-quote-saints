@@ -75,17 +75,18 @@ export const SAINT_IMAGES = {
 };
 
 // Vertical crop anchor for the Today card / detail modal hero banner (both
-// use object-cover at a short, wide aspect ratio: ~176px tall at full card
-// width). Most source paintings here are full or half-length portraits with
-// the face in the upper portion, so saints not listed here default to a
-// top-anchored crop (CSS 'center top'). Override here — with 'center' or a
-// vertical percentage — when the default top crop cuts off the face; each
-// value was found empirically by test-cropping the source image, since
-// face position varies a lot by composition (headshot vs. full-body scene).
+// use object-cover at a short, wide aspect ratio: 224px tall on the Today
+// card, 256px in the detail modal, at full card width). Most source
+// paintings here are full or half-length portraits with the face in the
+// upper portion, so saints not listed here default to a top-anchored crop
+// (CSS 'center top'). Override here — with 'center' or a vertical
+// percentage — when the default top crop cuts off the face; each value was
+// found empirically by test-cropping the source image, since face position
+// varies a lot by composition (headshot vs. full-body scene). The taller
+// box added in this pass means most saints no longer need an override at
+// all — re-check this map (and re-tune remaining entries) if the container
+// height changes again.
 export const SAINT_IMAGE_POSITION = {
   's-0731':    'center', // Ignatius Loyola — tight headshot, face fills the frame
-  's-0804':    '8%',     // John Vianney — face sits lower in a tall stained-glass panel
-  's-0804-vo': '8%',     // Saint Dominic — full-body scene, face in the upper-middle arch
-  's-0808':    '8%',     // shares Saint Dominic's image with s-0804-vo
-  's-0715':    '20%',    // Bonaventure — full-body writing scene, face in upper third
+  's-0715':    '14%',    // Bonaventure — full-body writing scene, face in upper third
 };

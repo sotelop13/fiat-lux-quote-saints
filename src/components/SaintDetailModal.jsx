@@ -71,7 +71,7 @@ export default function SaintDetailModal({ saint, liturgical, open, onClose, con
 
             {/* Hero image */}
             {saint.image_url && (
-              <div className="relative h-52 overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
                 <img
                   src={saint.image_url}
                   alt=""
