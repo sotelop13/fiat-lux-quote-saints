@@ -37,6 +37,7 @@ export const SAINT_IMAGES = {
   's-0706':    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Maria_Goretti.jpg/480px-Maria_Goretti.jpg',
   's-0711':    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg/500px-Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg',
   's-0715':    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Rebecca_Dulcibella_Orpen_%281830-1923%29_-_Saint_Bonaventure_Inspired_to_Write_-_343200_-_National_Trust.jpg/500px-Rebecca_Dulcibella_Orpen_%281830-1923%29_-_Saint_Bonaventure_Inspired_to_Write_-_343200_-_National_Trust.jpg',
+  's-0716':    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Veronese_-_Possibly_after_-_1922.641_-_Virgin_Mary_Handing_Scapular_to_Saint_Simon_Stock.jpg/500px-Veronese_-_Possibly_after_-_1922.641_-_Virgin_Mary_Handing_Scapular_to_Saint_Simon_Stock.jpg',
   's-0722':    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Bernardino_Campi_-_Mary_Magdalene_-_Google_Art_Project.jpg/500px-Bernardino_Campi_-_Mary_Magdalene_-_Google_Art_Project.jpg',
   's-0731':    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Ignatius_Loyola.jpg/500px-Ignatius_Loyola.jpg',
 
