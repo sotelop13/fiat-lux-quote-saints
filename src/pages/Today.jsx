@@ -1,6 +1,8 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
+import { motion, useMotionValue, animate } from 'framer-motion';
+import { useTheme } from 'next-themes';
 import { Heart, BookOpen, BookMarked, Loader2, Sparkles, Share2, CalendarDays, Star, ChevronRight, Flame } from 'lucide-react';
 import { Saint, LiturgicalDay, UserFavorite } from '@/api/entities';
 import { getUpcomingReadings } from '@/api/readingsData';
@@ -22,14 +24,113 @@ import { useNotifications, notifSupported } from '@/hooks/use-notifications';
 import { useStreak } from '@/hooks/use-streak';
 
 function RiteToggle({ rite, onChange }) {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
+  const containerRef = useRef(null);
+  const noRef = useRef(null);
+  const voRef = useRef(null);
+  const indicatorX = useMotionValue(0);
+  const indicatorW = useMotionValue(0);
+  const [geom, setGeom] = useState(null);
+  const isFirstPos = useRef(true);
+
+  // Geometry is measured independently of which rite is active — mirrors
+  // BottomNav's loupe pattern (see left-0 comment there for why an explicit
+  // left anchor matters for the sliding indicator's transform math).
+  useEffect(() => {
+    const measure = () => {
+      const c = containerRef.current, n = noRef.current, v = voRef.current;
+      if (!c || !n || !v) return;
+      // The indicator's `left-0` anchors to the padding box, but
+      // getBoundingClientRect() measures the border box — offset by
+      // clientLeft (the border width) so the two agree.
+      const originLeft = c.getBoundingClientRect().left + c.clientLeft;
+      setGeom({
+        NO: { x: n.getBoundingClientRect().left - originLeft, w: n.offsetWidth },
+        VO: { x: v.getBoundingClientRect().left - originLeft, w: v.offsetWidth },
+      });
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
+  useEffect(() => {
+    if (!geom) return;
+    const target = geom[rite];
+    if (isFirstPos.current) {
+      indicatorX.set(target.x);
+      indicatorW.set(target.w);
+      isFirstPos.current = false;
+    } else {
+      animate(indicatorX, target.x, { type: 'spring', stiffness: 520, damping: 34 });
+      animate(indicatorW, target.w, { type: 'spring', stiffness: 520, damping: 34 });
+    }
+  }, [rite, geom]);
+
   return (
-    <div className="inline-flex items-center bg-secondary rounded-lg p-0.5 gap-0.5 shrink-0">
+    <div
+      ref={containerRef}
+      className="relative inline-flex items-center p-0.5 gap-0.5 shrink-0 rounded-full"
+      style={{
+        background: isDark ? 'rgba(16,16,20,0.75)' : 'rgba(255,255,255,0.7)',
+        backdropFilter: 'blur(16px) saturate(200%)',
+        WebkitBackdropFilter: 'blur(16px) saturate(200%)',
+        border: isDark ? '1px solid rgba(255,255,255,0.09)' : '1px solid rgba(255,255,255,0.75)',
+        boxShadow: isDark
+          ? '0 3px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)'
+          : '0 3px 10px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.9)',
+      }}
+    >
+      {/* Top sheen */}
+      <div
+        className="absolute inset-0 rounded-full pointer-events-none"
+        style={{
+          background: isDark
+            ? 'linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 55%)'
+            : 'linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 55%)',
+        }}
+      />
+
+      {/* Sliding glass indicator */}
+      {geom && (
+        <motion.div
+          className="absolute left-0 top-0.5 bottom-0.5 rounded-full pointer-events-none"
+          style={{
+            x: indicatorX,
+            width: indicatorW,
+            background: isDark
+              ? 'radial-gradient(120% 100% at 25% 0%, rgba(255,255,255,0.22), rgba(255,255,255,0) 55%), rgba(255,255,255,0.14)'
+              : 'radial-gradient(120% 100% at 25% 0%, rgba(255,255,255,0.95), rgba(255,255,255,0) 55%), rgba(255,255,255,0.92)',
+            boxShadow: isDark
+              ? '0 1px 4px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.16)'
+              : '0 1px 4px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,1)',
+          }}
+        >
+          <div className="absolute inset-0 overflow-hidden rounded-full pointer-events-none">
+            <motion.div
+              key={rite}
+              className="absolute inset-y-0 w-1/2"
+              style={{
+                background: isDark
+                  ? 'linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.22) 45%, transparent 90%)'
+                  : 'linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.55) 45%, transparent 90%)',
+              }}
+              initial={{ x: '-120%', opacity: 0 }}
+              animate={{ x: '220%', opacity: [0, 1, 0] }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+            />
+          </div>
+        </motion.div>
+      )}
+
       {[{ key: 'NO', label: 'NO' }, { key: 'VO', label: 'VO' }].map(({ key, label }) => (
         <button
           key={key}
+          ref={key === 'NO' ? noRef : voRef}
           onClick={() => onChange(key)}
-          className={`px-2.5 py-1 rounded-md text-xs font-inter font-semibold transition-all ${
-            rite === key ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
+          className={`relative z-10 px-2.5 py-1 rounded-full text-xs font-inter font-semibold transition-colors ${
+            rite === key ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
           }`}
         >
           {label}
