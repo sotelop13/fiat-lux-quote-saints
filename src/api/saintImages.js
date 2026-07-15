@@ -86,4 +86,5 @@ export const SAINT_IMAGE_POSITION = {
   's-0804':    '8%',     // John Vianney — face sits lower in a tall stained-glass panel
   's-0804-vo': '8%',     // Saint Dominic — full-body scene, face in the upper-middle arch
   's-0808':    '8%',     // shares Saint Dominic's image with s-0804-vo
+  's-0715':    '20%',    // Bonaventure — full-body writing scene, face in upper third
 };
