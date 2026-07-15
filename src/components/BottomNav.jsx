@@ -101,8 +101,8 @@ export default function BottomNav({ activeTab, onChange }) {
 
   const loupeStyle = {
     background: isDark
-      ? 'linear-gradient(160deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.06) 100%)'
-      : 'linear-gradient(160deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.58) 100%)',
+      ? 'radial-gradient(120% 100% at 22% 0%, rgba(255,255,255,0.22), rgba(255,255,255,0) 55%), linear-gradient(160deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.06) 100%)'
+      : 'radial-gradient(120% 100% at 22% 0%, rgba(255,255,255,0.9), rgba(255,255,255,0) 55%), linear-gradient(160deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.58) 100%)',
     backdropFilter: 'blur(10px)',
     WebkitBackdropFilter: 'blur(10px)',
     border: isDark
@@ -136,17 +136,49 @@ export default function BottomNav({ activeTab, onChange }) {
             : '0 8px 32px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.92)',
         }}
       >
-        {/* Glass loupe — top/bottom inset matches container py-1.5 exactly */}
+        {/* Top sheen — soft light catching the whole glass pill */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            borderRadius: 28,
+            background: isDark
+              ? 'linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 40%)'
+              : 'linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 40%)',
+          }}
+        />
+
+        {/* Glass loupe — top/bottom inset matches container py-1.5 exactly.
+            left-0 anchors it at the padding edge explicitly; without it the
+            browser's static-position fallback lands at the content edge
+            (past the padding), and translateX below double-counts
+            containerPad, shifting the loupe off the active tab by that
+            amount. */}
         {tabWidth > 0 && (
           <motion.div
-            className="absolute top-1.5 bottom-1.5 pointer-events-none"
+            className="absolute left-0 top-1.5 bottom-1.5 pointer-events-none"
             style={{
               x: loupeX,
               width: tabWidth,
               borderRadius: 22,
               ...loupeStyle,
             }}
-          />
+          >
+            {/* Shimmer sweep — plays once whenever the active tab changes */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ borderRadius: 22 }}>
+              <motion.div
+                key={activeIndex}
+                className="absolute inset-y-0 w-1/2"
+                style={{
+                  background: isDark
+                    ? 'linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.22) 45%, transparent 90%)'
+                    : 'linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.55) 45%, transparent 90%)',
+                }}
+                initial={{ x: '-120%', opacity: 0 }}
+                animate={{ x: '220%', opacity: [0, 1, 0] }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+              />
+            </div>
+          </motion.div>
         )}
 
         {TABS.map((tab) => {
