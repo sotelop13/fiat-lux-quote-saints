@@ -5,18 +5,18 @@
 
 export const SAINT_IMAGES = {
   // January
-  's-0101':    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Madonna_Advocata.png/480px-Madonna_Advocata.png',
-  's-0121':    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/2872-saint-agnes-domenichino.jpg/480px-2872-saint-agnes-domenichino.jpg',
-  's-0128':    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/St-thomas-aquinasFXD.jpg/480px-St-thomas-aquinasFXD.jpg',
-  's-0131':    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Don_Bosco_%40_Torino%2C_1880_%28original%29.jpg/480px-Don_Bosco_%40_Torino%2C_1880_%28original%29.jpg',
+  's-0101':    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Madonna_Advocata.png/500px-Madonna_Advocata.png',
+  's-0121':    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/2872-saint-agnes-domenichino.jpg/500px-2872-saint-agnes-domenichino.jpg',
+  's-0128':    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/St-thomas-aquinasFXD.jpg/500px-St-thomas-aquinasFXD.jpg',
+  's-0131':    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Don_Bosco_%40_Torino%2C_1880_%28original%29.jpg/500px-Don_Bosco_%40_Torino%2C_1880_%28original%29.jpg',
 
   // February
-  's-0210':    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Kleinmariazell_-_Altar_Scholastica_2.jpg/480px-Kleinmariazell_-_Altar_Scholastica_2.jpg',
-  's-0223':    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Polycarp_of_Smyrna2.jpg/480px-Polycarp_of_Smyrna2.jpg',
+  's-0210':    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Kleinmariazell_-_Altar_Scholastica_2.jpg/500px-Kleinmariazell_-_Altar_Scholastica_2.jpg',
+  's-0223':    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Polycarp_of_Smyrna2.jpg/500px-Polycarp_of_Smyrna2.jpg',
 
   // March — Thomas Aquinas (VO feast) shares image with Jan 28 entry
-  's-0307-vo': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/St-thomas-aquinasFXD.jpg/480px-St-thomas-aquinasFXD.jpg',
-  's-0317':    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Our_Lady%27s_Island_Church_of_the_Assumption_East_Aisle_Window_Saint_Patrick_2010_09_26.jpg/480px-Our_Lady%27s_Island_Church_of_the_Assumption_East_Aisle_Window_Saint_Patrick_2010_09_26.jpg',
+  's-0307-vo': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/St-thomas-aquinasFXD.jpg/500px-St-thomas-aquinasFXD.jpg',
+  's-0317':    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Our_Lady%27s_Island_Church_of_the_Assumption_East_Aisle_Window_Saint_Patrick_2010_09_26.jpg/500px-Our_Lady%27s_Island_Church_of_the_Assumption_East_Aisle_Window_Saint_Patrick_2010_09_26.jpg',
   's-0319':    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Guido_Reni_-_St_Joseph_with_the_Infant_Jesus_-_WGA19304.jpg/480px-Guido_Reni_-_St_Joseph_with_the_Infant_Jesus_-_WGA19304.jpg',
   's-0321':    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg/480px-Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg',
 
