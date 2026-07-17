@@ -94,4 +94,7 @@ export const SAINT_IMAGE_POSITION = {
   's-0820':    '5%',     // Bernard of Clairvaux — very tall full-length portrait, face near the top
   's-0425':    '25%',    // Mark the Evangelist — tall illuminated-manuscript page, his face sits well below the winged-lion emblem at top
   's-0621':    '44%',    // Aloysius Gonzaga — tall multi-figure altarpiece, he's the young man in the lower half, not the angels above
+  's-0905':    '40%',    // Mother Teresa — very tall closeup photo, default top-anchor cropped out her nose/mouth on the shorter Today card
+  's-1001':    '50%',    // Thérèse of Lisieux — tall closeup photo, default top-anchor cropped her face off entirely on the Today card
+  's-1003':    '50%',    // same photo as s-1001 (VO feast)
 };
