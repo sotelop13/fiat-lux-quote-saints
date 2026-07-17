@@ -17,24 +17,24 @@ export const SAINT_IMAGES = {
   // March — Thomas Aquinas (VO feast) shares image with Jan 28 entry
   's-0307-vo': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/St-thomas-aquinasFXD.jpg/500px-St-thomas-aquinasFXD.jpg',
   's-0317':    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Our_Lady%27s_Island_Church_of_the_Assumption_East_Aisle_Window_Saint_Patrick_2010_09_26.jpg/500px-Our_Lady%27s_Island_Church_of_the_Assumption_East_Aisle_Window_Saint_Patrick_2010_09_26.jpg',
-  's-0319':    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Guido_Reni_-_St_Joseph_with_the_Infant_Jesus_-_WGA19304.jpg/480px-Guido_Reni_-_St_Joseph_with_the_Infant_Jesus_-_WGA19304.jpg',
-  's-0321':    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg/480px-Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg',
+  's-0319':    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Guido_Reni_-_St_Joseph_with_the_Infant_Jesus_-_WGA19304.jpg/500px-Guido_Reni_-_St_Joseph_with_the_Infant_Jesus_-_WGA19304.jpg',
+  's-0321':    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg/500px-Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg',
 
   // April
-  's-0425':    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Codexaureus_21.jpg/480px-Codexaureus_21.jpg',
-  's-0429':    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Giovanni_Battista_Tiepolo_096.jpg/480px-Giovanni_Battista_Tiepolo_096.jpg',
+  's-0425':    'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Codexaureus_21.jpg/500px-Codexaureus_21.jpg',
+  's-0429':    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Giovanni_Battista_Tiepolo_096.jpg/500px-Giovanni_Battista_Tiepolo_096.jpg',
 
   // May
-  's-0530':    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Joan_of_Arc_miniature_graded.jpg/480px-Joan_of_Arc_miniature_graded.jpg',
+  's-0530':    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Joan_of_Arc_miniature_graded.jpg/500px-Joan_of_Arc_miniature_graded.jpg',
 
   // June
-  's-0613':    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Francisco_de_Zurbar%C3%A1n_-_Sto_Antonio_de_Padua.jpg/480px-Francisco_de_Zurbar%C3%A1n_-_Sto_Antonio_de_Padua.jpg',
-  's-0621':    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/The_Vocation_of_Saint_Aloysius_Gonzaga.PNG/480px-The_Vocation_of_Saint_Aloysius_Gonzaga.PNG',
-  's-0624':    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Accademia_-_St_John_the_Baptist_by_Titian_Cat314.jpg/480px-Accademia_-_St_John_the_Baptist_by_Titian_Cat314.jpg',
+  's-0613':    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Francisco_de_Zurbar%C3%A1n_-_Sto_Antonio_de_Padua.jpg/500px-Francisco_de_Zurbar%C3%A1n_-_Sto_Antonio_de_Padua.jpg',
+  's-0621':    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/The_Vocation_of_Saint_Aloysius_Gonzaga.PNG/500px-The_Vocation_of_Saint_Aloysius_Gonzaga.PNG',
+  's-0624':    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Accademia_-_St_John_the_Baptist_by_Titian_Cat314.jpg/500px-Accademia_-_St_John_the_Baptist_by_Titian_Cat314.jpg',
 
   // July
-  's-0703':    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Thomas_the_Apostle._Detail_of_the_mosaic_in_the_Basilica_of_San_Vitale._Ravena%2C_Italy.jpg/480px-Thomas_the_Apostle._Detail_of_the_mosaic_in_the_Basilica_of_San_Vitale._Ravena%2C_Italy.jpg',
-  's-0706':    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Maria_Goretti.jpg/480px-Maria_Goretti.jpg',
+  's-0703':    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Thomas_the_Apostle._Detail_of_the_mosaic_in_the_Basilica_of_San_Vitale._Ravena%2C_Italy.jpg/500px-Thomas_the_Apostle._Detail_of_the_mosaic_in_the_Basilica_of_San_Vitale._Ravena%2C_Italy.jpg',
+  's-0706':    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Maria_Goretti.jpg/500px-Maria_Goretti.jpg',
   's-0711':    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg/500px-Memling%2C_Trittico_di_Benedetto_Portinari%2C_San_Benedetto.jpg',
   's-0715':    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Rebecca_Dulcibella_Orpen_%281830-1923%29_-_Saint_Bonaventure_Inspired_to_Write_-_343200_-_National_Trust.jpg/500px-Rebecca_Dulcibella_Orpen_%281830-1923%29_-_Saint_Bonaventure_Inspired_to_Write_-_343200_-_National_Trust.jpg',
   's-0716':    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Veronese_-_Possibly_after_-_1922.641_-_Virgin_Mary_Handing_Scapular_to_Saint_Simon_Stock.jpg/500px-Veronese_-_Possibly_after_-_1922.641_-_Virgin_Mary_Handing_Scapular_to_Saint_Simon_Stock.jpg',
@@ -92,4 +92,6 @@ export const SAINT_IMAGE_POSITION = {
   's-0715':    '14%',    // Bonaventure — full-body writing scene, face in upper third
   's-0815':    '20%',    // Assumption of Mary — tall altarpiece, her face sits below God the Father
   's-0820':    '5%',     // Bernard of Clairvaux — very tall full-length portrait, face near the top
+  's-0425':    '25%',    // Mark the Evangelist — tall illuminated-manuscript page, his face sits well below the winged-lion emblem at top
+  's-0621':    '44%',    // Aloysius Gonzaga — tall multi-figure altarpiece, he's the young man in the lower half, not the angels above
 };
