@@ -52,26 +52,27 @@ export const SAINT_IMAGES = {
   's-0828':    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Saint_Augustine_by_Philippe_de_Champaigne.jpg/500px-Saint_Augustine_by_Philippe_de_Champaigne.jpg',
 
   // September
-  's-0905':    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Mother_Teresa_1.jpg/480px-Mother_Teresa_1.jpg',
-  's-0923':    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Padre_Pio_portraitFXD.jpg/480px-Padre_Pio_portraitFXD.jpg',
-  's-0930':    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/MatthiasStom-SaintJerome-Nantes.jpg/480px-MatthiasStom-SaintJerome-Nantes.jpg',
+  's-0905':    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Mother_Teresa_1.jpg/500px-Mother_Teresa_1.jpg',
+  's-0923':    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Padre_Pio_portraitFXD.jpg/500px-Padre_Pio_portraitFXD.jpg',
+  's-0930':    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/MatthiasStom-SaintJerome-Nantes.jpg/500px-MatthiasStom-SaintJerome-Nantes.jpg',
 
   // October — s-1003 is the VO feast of the same saint as s-1001
-  's-1001':    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Teresa-de-Lisieux.jpg/480px-Teresa-de-Lisieux.jpg',
-  's-1003':    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Teresa-de-Lisieux.jpg/480px-Teresa-de-Lisieux.jpg',
-  's-1004':    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Philip_Fruytiers_-_St._Francis_of_Assisi.jpg/480px-Philip_Fruytiers_-_St._Francis_of_Assisi.jpg',
-  's-1015':    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Santa_Teresa_de_Jes%C3%BAs_%28Museo_del_Prado%29.jpg/480px-Santa_Teresa_de_Jes%C3%BAs_%28Museo_del_Prado%29.jpg',
-  's-1017-vo': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg/480px-ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg',
-  's-1022':    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg/480px-ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg',
+  's-1001':    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Teresa-de-Lisieux.jpg/500px-Teresa-de-Lisieux.jpg',
+  's-1003':    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Teresa-de-Lisieux.jpg/500px-Teresa-de-Lisieux.jpg',
+  's-1004':    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Philip_Fruytiers_-_St._Francis_of_Assisi.jpg/500px-Philip_Fruytiers_-_St._Francis_of_Assisi.jpg',
+  's-1015':    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Santa_Teresa_de_Jes%C3%BAs_%28Museo_del_Prado%29.jpg/500px-Santa_Teresa_de_Jes%C3%BAs_%28Museo_del_Prado%29.jpg',
+  // s-1017-vo (Margaret Mary Alacoque, VO feast) intentionally has no entry —
+  // it previously pointed at the John Paul II photo above by mistake.
+  's-1022':    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg/500px-ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg',
 
   // December
-  's-1212':    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Virgen_de_guadalupe1.jpg/480px-Virgen_de_guadalupe1.jpg',
-  's-1214':    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Zurbar%C3%A1n_%28atribuido%29-John_of_the_Cross-1656.jpg/480px-Zurbar%C3%A1n_%28atribuido%29-John_of_the_Cross-1656.jpg',
-  's-1124':    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Zurbar%C3%A1n_%28atribuido%29-John_of_the_Cross-1656.jpg/480px-Zurbar%C3%A1n_%28atribuido%29-John_of_the_Cross-1656.jpg',
+  's-1212':    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Virgen_de_guadalupe1.jpg/500px-Virgen_de_guadalupe1.jpg',
+  's-1214':    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Zurbar%C3%A1n_%28atribuido%29-John_of_the_Cross-1656.jpg/500px-Zurbar%C3%A1n_%28atribuido%29-John_of_the_Cross-1656.jpg',
+  's-1124':    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Zurbar%C3%A1n_%28atribuido%29-John_of_the_Cross-1656.jpg/500px-Zurbar%C3%A1n_%28atribuido%29-John_of_the_Cross-1656.jpg',
 
   // Movable feasts (ID without year suffix)
-  's-sacredheart':       'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/SacredHeartBatoni.jpg/480px-SacredHeartBatoni.jpg',
-  's-divinemercysunday': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg/480px-ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg',
+  's-sacredheart':       'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/SacredHeartBatoni.jpg/500px-SacredHeartBatoni.jpg',
+  's-divinemercysunday': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg/500px-ADAMELLO_-_PAPA_-_Giovanni_Paolo_II_-_panoramio_%28cropped%29.jpg',
 };
 
 // Vertical crop anchor for the Today card / detail modal hero banner (both
